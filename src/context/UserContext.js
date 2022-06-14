@@ -64,8 +64,8 @@ function creatStudents(
   setIsLoading,
   setError,
 ) {
-  //const BASE_URL = "http://academic.pcru.ac.th/dev/php-jwt-auth/api/signin.php";
-  const BASE_URL = "http://academic.pcru.ac.th/dev/login.php";
+  //const BASE_URL = "http://academic.pcru.ac.th/api2learning/php-jwt-auth/api/signin.php";
+  const BASE_URL = "http://academic.pcru.ac.th/api2learning/login.php";
   //.post(BASE_URL, { usr: login, pwd: password })
 
   //console.log("errx");
@@ -126,8 +126,8 @@ function creatStudents(
 
 // ######### Login ##########
 function loginUser(dispatch, login, password, history, setIsLoading, setError) {
-  //const BASE_URL = "http://academic.pcru.ac.th/dev/php-jwt-auth/api/signin.php";
-  const BASE_URL = "http://academic.pcru.ac.th/dev/login.php";
+  //const BASE_URL = "http://academic.pcru.ac.th/api2learning/php-jwt-auth/api/signin.php";
+  const BASE_URL = "http://academic.pcru.ac.th/api2learning/login.php";
   //.post(BASE_URL, { usr: login, pwd: password })
 
   //console.log("errx");

@@ -38,9 +38,10 @@ function Login(props) {
   //var [loginValue, setLoginValue] = useState("admin@flatlogic.com"); //user email
   //var [passwordValue, setPasswordValue] = useState("password"); //password
 
-  var [loginValue, setLoginValue] = useState("653004"); //user email
-  var [passwordValue, setPasswordValue] = useState("b@mb"); //password
-
+  //var [loginValue, setLoginValue] = useState("653004"); //user email
+  //var [passwordValue, setPasswordValue] = useState("b@mb"); //password
+  var [loginValue, setLoginValue] = useState("651102064101"); //user email
+  var [passwordValue, setPasswordValue] = useState("200942"); //password
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
