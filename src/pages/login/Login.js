@@ -6,7 +6,12 @@ import {
   Button,
   TextField,
   Fade,
+  Container,
+  Paper,
+  Avatar,
+  CssBaseline,
 } from "@material-ui/core";
+import { LockOutlined as LockOutlinedIcon } from "@material-ui/icons";
 import { withRouter } from "react-router-dom";
 //import classnames from "classnames";
 
@@ -37,17 +42,26 @@ function Login(props) {
   var [passwordValue, setPasswordValue] = useState("b@mb"); //password
 
   return (
-    <Grid container className={classes.container}>
-      <div className={classes.logotypeContainer}>
-        <img src={logo} alt="logo" className={classes.logotypeImage} />
-        <Typography className={classes.logotypeText}>
-          ระบบจัดเก็บชั่วโมง
-          <br />
-          นักศึกษาทุน (ออนไลน์)
-        </Typography>
-      </div>
-      <div className={classes.formContainer}>
-        <div className={classes.form}>
+    <Grid container component="main" className={classes.root}>
+      <CssBaseline />
+      <Container
+        component={Paper}
+        elevation={5}
+        maxWidth="xs"
+        className={classes.container}
+      >
+        <div className={classes.div}>
+          <Typography variant="h5" className={classes.greeting}>
+            “การให้ความรู้เกี่ยวกับระบบสารสนเทศ กฎ ระเบียบ ข้อบังคับ
+            และแนวปฏิบัติสำหรับ นักศึกษาใหม่ ประจำปีการศึกษา 2565”
+            <br />
+            รูปแบบบทเรียนออนไลน์
+          </Typography>
+
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+
           <React.Fragment>
             <Typography variant="h1" className={classes.greeting}>
               เข้าระบบ
@@ -106,7 +120,7 @@ function Login(props) {
                     )
                   }
                   variant="contained"
-                  color="primary"
+                  color="secondary"
                   size="large"
                 >
                   เข้าสู่ระบบ
@@ -114,11 +128,12 @@ function Login(props) {
               )}
             </div>
           </React.Fragment>
+
+          <Typography color="primary" className={classes.copyright}>
+            © 2022-{new Date().getFullYear()} , สสว. All rights reserved.
+          </Typography>
         </div>
-        <Typography color="primary" className={classes.copyright}>
-          © 2014-{new Date().getFullYear()} , LLC. All rights reserved.
-        </Typography>
-      </div>
+      </Container>
     </Grid>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Drawer, IconButton, List } from "@material-ui/core";
 import {
-  Home as HomeIcon,
+  Videocam as Videocam,
   NotificationsNone as NotificationsIcon,
   FormatSize as TypographyIcon,
   FilterNone as UIElementsIcon,
@@ -38,76 +38,14 @@ import {
 //console.log(chkUserType.USER_TYPE);
 //if(chkUserType.)
 //if (chkUserType.USER_TYPE === "student") {
-const student_menu = [
-  { id: 0, label: "Dashboard", link: "/app/dashboard", icon: <HomeIcon /> },
-  {
-    id: 1,
-    label: "ตารางกิจกรรม",
-    link: "/app/events",
-    icon: <EventIcon />,
-  },
-  { id: 6, type: "title", label: "รายงาน" },
-  {
-    id: 7,
-    label: "Library",
-    link: "/app/xml",
-    icon: <LibraryIcon />,
-  },
-  {
-    id: 8,
-    label: "Support",
-    link: "/app/xyz",
-    icon: <SupportIcon />,
-  },
-  {
-    id: 9,
-    label: "FAQ",
-    link: "/app/abc",
-    icon: <FAQIcon />,
-  },
-];
-//
 const user_menu = [
-  { id: 0, label: "Dashboard", link: "/app/dashboard", icon: <HomeIcon /> },
-  {
-    id: 1,
-    label: "รายชื่อนักศึกษาทุน",
-    link: "/app/students",
-    icon: <TypographyIcon />,
-  },
-  { id: 2, label: "ข้อมูลทุน", link: "/app/tables", icon: <TableIcon /> },
-  {
-    id: 3,
-    label: "ข้อมูลผู้ดูแลทุน",
-    link: "/app/notifications",
-    icon: <NotificationsIcon />,
-  },
-  {
-    id: 4,
-    label: "ปีการศึกษา",
-    link: "/app/ems",
-    icon: <UIElementsIcon />,
-  },
-  { id: 5, type: "divider" },
-  { id: 6, type: "title", label: "รายงาน" },
-  {
-    id: 7,
-    label: "Library",
-    link: "/app/xml",
-    icon: <LibraryIcon />,
-  },
-  {
-    id: 8,
-    label: "Support",
-    link: "/app/xyz",
-    icon: <SupportIcon />,
-  },
-  {
-    id: 9,
-    label: "FAQ",
-    link: "/app/abc",
-    icon: <FAQIcon />,
-  },
+  { id: 0, label: "Learn", link: "/app/dashboard", icon: <Videocam /> },
+  // {
+  //   id: 3,
+  //   label: "ข้อมูลผู้ดูแลทุน",
+  //   link: "/app/notifications",
+  //   icon: <NotificationsIcon />,
+  // },
 ];
 
 //const structure = structurex;
@@ -162,7 +100,15 @@ function Sidebar({ location }) {
         </IconButton>
       </div>
       <List className={classes.sidebarList}>
-        {typeLogin === "student"
+        {user_menu.map((link) => (
+          <SidebarLink
+            key={link.id}
+            location={location}
+            isSidebarOpened={isSidebarOpened}
+            {...link}
+          />
+        ))}
+        {/* {typeLogin === "student"
           ? student_menu.map((link) => (
               <SidebarLink
                 key={link.id}
@@ -178,7 +124,7 @@ function Sidebar({ location }) {
                 isSidebarOpened={isSidebarOpened}
                 {...link}
               />
-            ))}
+            ))} */}
       </List>
     </Drawer>
   );
