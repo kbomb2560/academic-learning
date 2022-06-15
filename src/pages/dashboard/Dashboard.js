@@ -322,20 +322,158 @@ export default function TypographyPage() {
             title="บทที่ 4 ผลการเรียนและการสำเร็จการศึกษา"
             disableWidgetMenu
           >
-            - การตรวจสอบผลการเรียนและพ้นสภาพวัดผลทางทะเบียน
-            <br />- การสำเร็จการศึกษาและการได้รับเกียรตินิยม
-            <br />- เวลาเรียนและการขาดสอบปลายภาค
+            <Grid item xs={12}>
+              <div className={classes.root}>
+                <List dense={true}>
+                  <ListItem
+                    button
+                    selected={selectedIndex === 5}
+                    onClick={(event) => handleListItemClick(event, 5)}
+                    component={Link}
+                    rel="noopener noreferrer"
+                    href="http://academic.pcru.ac.th"
+                    target="_blank"
+                  >
+                    <ListItemAvatar>
+                      <Avatar className={classes.pink}>
+                        <YouTubeIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="การตรวจสอบผลการเรียนและพ้นสภาพวัดผลทางทะเบียน"
+                      secondary={secondary ? "Secondary text" : null}
+                    />
+                  </ListItem>
+                  <ListItem
+                    button
+                    selected={selectedIndex === 6}
+                    onClick={(event) => handleListItemClick(event, 6)}
+                    component={Link}
+                    rel="noopener noreferrer"
+                    href="http://academic.pcru.ac.th"
+                    target="_blank"
+                  >
+                    <ListItemAvatar>
+                      <Avatar className={classes.pink}>
+                        <YouTubeIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="การสำเร็จการศึกษาและการได้รับเกียรตินิยม"
+                      secondary={secondary ? "Secondary text" : null}
+                    />
+                  </ListItem>
+                  <ListItem
+                    button
+                    selected={selectedIndex === 6}
+                    onClick={(event) => handleListItemClick(event, 6)}
+                    component={Link}
+                    rel="noopener noreferrer"
+                    href="http://academic.pcru.ac.th"
+                    target="_blank"
+                  >
+                    <ListItemAvatar>
+                      <Avatar className={classes.pink}>
+                        <YouTubeIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="เวลาเรียนและการขาดสอบปลายภาค"
+                      secondary={secondary ? "Secondary text" : null}
+                    />
+                  </ListItem>
+                </List>
+              </div>
+            </Grid>
           </Widget>
         </Grid>
         <Grid item xs={12} md={6}>
           <Widget title="บทที่ 5 คำร้องต่าง ๆ ด้านวิชาการ" disableWidgetMenu>
-            - การพักการเรียนและการคืนสถาพนักศึกษา
-            (การขอลาพักการศึกษา/การขอรักษาสถานภาพการนักศึกษา/การขอคืนสถานภารการเป็นนักศึกษา)
-            <br />- การขอใบรับรองและใบรายงานผลการเรียน
-            (การขอใบรับรองการเป็นนักศึกษา/ ใบรายงานผลการเรียน)
-            <br />- การย้ายและการลาออก (การย้ายสาขาวิชา/การย้ายภาค (จากปกติไป
-            กศ.ปช.)/การย้ายสถานศึกษา/การลาออก)
-            <br />- การเปลี่ยนชื่อ – สกุล (การเปลี่ยนชื่อ-สกุล ยศ)
+            <Grid item xs={12}>
+              <div className={classes.root}>
+                <List dense={true}>
+                  <ListItem
+                    button
+                    selected={selectedIndex === 5}
+                    onClick={(event) => handleListItemClick(event, 5)}
+                    component={Link}
+                    rel="noopener noreferrer"
+                    href="http://academic.pcru.ac.th"
+                    target="_blank"
+                  >
+                    <ListItemAvatar>
+                      <Avatar className={classes.pink}>
+                        <YouTubeIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="การพักการเรียนและการคืนสถาพนักศึกษา
+                      (การขอลาพักการศึกษา/การขอรักษาสถานภาพการนักศึกษา/การขอคืนสถานภารการเป็นนักศึกษา)"
+                      secondary={secondary ? "Secondary text" : null}
+                    />
+                  </ListItem>
+                  <ListItem
+                    button
+                    selected={selectedIndex === 6}
+                    onClick={(event) => handleListItemClick(event, 6)}
+                    component={Link}
+                    rel="noopener noreferrer"
+                    href="http://academic.pcru.ac.th"
+                    target="_blank"
+                  >
+                    <ListItemAvatar>
+                      <Avatar className={classes.pink}>
+                        <YouTubeIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="การขอใบรับรองและใบรายงานผลการเรียน
+                      (การขอใบรับรองการเป็นนักศึกษา/ ใบรายงานผลการเรียน)"
+                      secondary={secondary ? "Secondary text" : null}
+                    />
+                  </ListItem>
+                  <ListItem
+                    button
+                    selected={selectedIndex === 6}
+                    onClick={(event) => handleListItemClick(event, 6)}
+                    component={Link}
+                    rel="noopener noreferrer"
+                    href="http://academic.pcru.ac.th"
+                    target="_blank"
+                  >
+                    <ListItemAvatar>
+                      <Avatar className={classes.pink}>
+                        <YouTubeIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="การย้ายและการลาออก (การย้ายสาขาวิชา/การย้ายภาค (จากปกติไป
+                        กศ.ปช.)/การย้ายสถานศึกษา/การลาออก)"
+                      secondary={secondary ? "Secondary text" : null}
+                    />
+                  </ListItem>
+                  <ListItem
+                    button
+                    selected={selectedIndex === 6}
+                    onClick={(event) => handleListItemClick(event, 6)}
+                    component={Link}
+                    rel="noopener noreferrer"
+                    href="http://academic.pcru.ac.th"
+                    target="_blank"
+                  >
+                    <ListItemAvatar>
+                      <Avatar className={classes.pink}>
+                        <YouTubeIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="การเปลี่ยนชื่อ - สกุล (การเปลี่ยนชื่อ-สกุล ยศ)"
+                      secondary={secondary ? "Secondary text" : null}
+                    />
+                  </ListItem>
+                </List>
+              </div>
+            </Grid>
           </Widget>
         </Grid>
         <Grid item xs={12} md={12}>
