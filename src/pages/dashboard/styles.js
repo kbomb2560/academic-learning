@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/styles";
-
+import { green, pink } from "@material-ui/core/colors";
 export default makeStyles((theme) => ({
   card: {
     minHeight: "100%",
@@ -127,10 +127,21 @@ export default makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
     color: "#fff",
   },
-
+  //
   root: {
     flexGrow: 1,
+    //maxWidth: 752,
   },
+  // demo: {
+  //   backgroundColor: theme.palette.background.paper,
+  // },
+  title: {
+    margin: theme.spacing(4, 0, 2),
+    // fontSize: 14,
+  },
+
+  //
+
   paper: {
     padding: theme.spacing(2),
     margin: "auto",
@@ -148,5 +159,24 @@ export default makeStyles((theme) => ({
   },
   widgcolor: {
     backgroundColor: "#e91e63",
+  },
+  pink: {
+    color: theme.palette.getContrastText(pink[500]),
+    backgroundColor: pink[500],
+  },
+  green: {
+    color: "#fff",
+    backgroundColor: green[500],
+  },
+  bullet: {
+    display: "inline-block",
+    margin: "0 2px",
+    transform: "scale(0.8)",
+  },
+  // title: {
+  //   fontSize: 14,
+  // },
+  pos: {
+    marginBottom: 12,
   },
 }));

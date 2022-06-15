@@ -13,6 +13,7 @@ import {
   Person as AccountIcon,
   Search as SearchIcon,
   ArrowBack as ArrowBackIcon,
+  Lock as LockIcon,
 } from "@material-ui/icons";
 import classNames from "classnames";
 
@@ -111,7 +112,7 @@ export default function Header(props) {
         </IconButton>
         <Typography variant="h6" weight="medium" className={classes.logotype}>
           การให้ความรู้เกี่ยวกับระบบสารสนเทศ กฎ ระเบียบ ข้อบังคับ
-          และแนวปฏิบัติสำหรับ นักศึกษาใหม่ ประจำปีการศึกษา 2565”
+          และแนวปฏิบัติสำหรับ นักศึกษาใหม่ ประจำปีการศึกษา 2565
         </Typography>
         <div className={classes.grow} />
 
@@ -152,29 +153,23 @@ export default function Header(props) {
           classes={{ paper: classes.profileMenu }}
           disableAutoFocusItem
         >
-          <div className={classes.profileMenuUser}>
-            <Typography variant="h4" weight="medium">
+          {/* <div className={classes.profileMenuUser}>
+            <Typography variant="h5" weight="medium">
               {studentsFullname}
             </Typography>
-          </div>
-          <MenuItem
-            className={classNames(
-              classes.profileMenuItem,
-              classes.headerMenuItem,
-            )}
-          >
-            <AccountIcon className={classes.profileMenuIcon} /> ข้อมูลส่วนตัว
+          </div> */}
+          <MenuItem>
+            <AccountIcon className={classes.profileMenuIcon} />
+            {studentsFullname}
           </MenuItem>
-
-          <div className={classes.profileMenuUser}>
-            <Typography
-              className={classes.profileMenuLink}
-              color="primary"
-              onClick={() => signOut(userDispatch, props.history)}
-            >
-              ออกจากระบบ
-            </Typography>
-          </div>
+          <MenuItem
+            className={classes.profileMenuLink}
+            color="primary"
+            onClick={() => signOut(userDispatch, props.history)}
+          >
+            <LockIcon className={classes.profileMenuIcon} />
+            ออกจากระบบ
+          </MenuItem>
         </Menu>
       </Toolbar>
     </AppBar>

@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid } from "@material-ui/core";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 // styles
 import useStyles from "./styles";
-
+//
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 // components
 import PageTitle from "../../components/PageTitle";
 import Widget from "../../components/Widget";
@@ -28,6 +30,40 @@ import {
   HelpOutline as FAQIcon,
   ArrowBack as ArrowBackIcon,
 } from "@material-ui/icons";
+
+//
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import VideocamIcon from "@material-ui/icons/Videocam";
+import YouTubeIcon from "@material-ui/icons/YouTube";
+import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import ListItemText from "@material-ui/core/ListItemText";
+import Avatar from "@material-ui/core/Avatar";
+import IconButton from "@material-ui/core/IconButton";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import FolderIcon from "@material-ui/icons/Folder";
+import DeleteIcon from "@material-ui/icons/Delete";
+import { green, pink } from "@material-ui/core/colors";
+import Link from "@material-ui/core/Link";
+
+//
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
+import PostAddIcon from "@material-ui/icons/PostAdd";
+import AssignmentIcon from "@material-ui/icons/Assignment";
+import LibraryAddCheckIcon from "@material-ui/icons/LibraryAddCheck";
+import CodeIcon from "@material-ui/icons/Code";
+import Alert from "@material-ui/lab/Alert";
+
+//
+
 const vdo_list = [
   {
     id: 7,
@@ -51,83 +87,234 @@ const vdo_list = [
 
 export default function TypographyPage() {
   var classes = useStyles();
+  const [dense, setDense] = useState(false);
+  const [secondary, setSecondary] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState();
+
+  // const bull = <span className={classes.bullet}>•</span>;
+
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+    console.log(index);
+  };
+
+  var rememberMe = localStorage.getItem("dataAuth");
+  //const user = rememberMe ? localStorage.getItem("dataStudent") : "";
+  var studentsData = JSON.parse(rememberMe);
+  var studentsFullname =
+    studentsData.PREFIX_NAME +
+    "" +
+    studentsData.FIRST_NAME +
+    " " +
+    studentsData.LAST_NAME;
+  var stduentsMajor_anme = studentsData.MAJOR_NAME;
+  var studentsSTDCODE = studentsData.STD_CODE;
+  var studentsFAC_NAME = studentsData.FAC_NAME;
+  //console.log(studentsData.STD_CODE);
+  //console.log(studentsData.USER_TYPE);
 
   return (
     <>
       <PageTitle title="บทเรียนออนไลน์" />
-
-      {/* {vdo_list.map((link) => (
-        <div className="col-md-4" key={link.id}>
-          <Grid container spacing={4}>
-            <div className={classes.root}>
-              <Paper className={classes.paper}>
-                <Grid container spacing={2}>
-                  <Grid item>
-                    <ButtonBase className={classes.image}>
-                      <img
-                        className={classes.img}
-                        alt="complex"
-                        src="/static/images/grid/complex.jpg"
-                      />
-                    </ButtonBase>
-                  </Grid>
-                  <Grid item xs={12} sm container>
-                    <Grid item xs container direction="column" spacing={2}>
-                      <Grid item xs>
-                        <Typography gutterBottom variant="subtitle1">
-                          Standard license {link.id}
-                        </Typography>
-                        <Typography variant="body2" gutterBottom>
-                          Full resolution 1920x1080 • JPEG
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary">
-                          ID: 1030114
-                        </Typography>
-                      </Grid>
-                      <Grid item>
-                        <Typography
-                          variant="body2"
-                          style={{ cursor: "pointer" }}
-                        >
-                          Remove
-                        </Typography>
-                      </Grid>
-                    </Grid>
-                    <Grid item>
-                      <Typography variant="subtitle1">$19.00</Typography>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </Paper>
-            </div>
-          </Grid>
-
-
-        </div>
-
-      ))} */}
       <Grid container spacing={1}>
-        <Grid item xs={12} md={12} className={classes.widgcolor}>
-          <Widget disableWidgetMenu>{"แบบทดสอบก่อนเรียน (Pre-test)"}</Widget>
+        <Grid item xs={12}>
+          <Widget
+            title="ข้อมูลส่วนตัว"
+            disableWidgetMenu
+            noWidgetShadow
+            style={{ color: "red" }}
+          >
+            <Typography>รหัสนักศึกษา {studentsSTDCODE}</Typography>
+            <Typography>ชื่อ-สกุล {studentsFullname}</Typography>
+            <Typography>{studentsFAC_NAME}</Typography>
+            <Typography>{stduentsMajor_anme}</Typography>
+          </Widget>
+        </Grid>
+
+        <Grid item xs={12} md={12}>
+          <List dense={true}>
+            <ListItem
+              button
+              selected={selectedIndex === 1}
+              onClick={(event) => handleListItemClick(event, 1)}
+              component={Link}
+              rel="noopener noreferrer"
+              href="http://academic.pcru.ac.th"
+              target="_blank"
+            >
+              <ListItemAvatar>
+                <Avatar className={classes.green}>
+                  <PostAddIcon />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText
+                primary="แบบทดสอบก่อนเรียน (Pre-test)"
+                secondary={secondary ? "Secondary text" : null}
+              />
+            </ListItem>
+          </List>
         </Grid>
         <Grid item xs={12} md={6}>
           <Widget title="บทที่ 1 ข้อมูลเบื้องต้น" disableWidgetMenu>
-            - ข้อมูลเบื้องต้นเกี่ยวกับการเรียนของนักศึกษาใหม่
-            <br />- ตรวจสอบคุณวุฒิเดิม
-            <br />- ทุนอุดหนุนการศึกษา
+            <Grid item xs={12}>
+              <div className={classes.root}>
+                <List dense={true}>
+                  <ListItem
+                    button
+                    selected={selectedIndex === 2}
+                    onClick={(event) => handleListItemClick(event, 2)}
+                    component={Link}
+                    rel="noopener noreferrer"
+                    href="https://drive.google.com/file/d/1pH2QBBhznXaMGHOeJkWCdKI_9r9yi0HY/view?usp=sharing"
+                    target="_blank"
+                  >
+                    <ListItemAvatar>
+                      <Avatar className={classes.pink}>
+                        <YouTubeIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="ข้อมูลเบื้องต้นเกี่ยวกับการเรียนของนักศึกษาใหม่"
+                      secondary={secondary ? "Secondary text" : null}
+                    />
+                  </ListItem>
+                  <ListItem
+                    button
+                    selected={selectedIndex === 3}
+                    onClick={(event) => handleListItemClick(event, 3)}
+                    component={Link}
+                    rel="noopener noreferrer"
+                    href="https://drive.google.com/file/d/17YqeJaM5HVi42Gbv_CQ-12hafD9nxGVU/view?usp=sharing"
+                    target="_blank"
+                  >
+                    <ListItemAvatar>
+                      <Avatar className={classes.pink}>
+                        <YouTubeIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="ตรวจสอบคุณวุฒิเดิม"
+                      secondary={secondary ? "Secondary text" : null}
+                    />
+                  </ListItem>
+                  <ListItem
+                    button
+                    selected={selectedIndex === 4}
+                    onClick={(event) => handleListItemClick(event, 4)}
+                    component={Link}
+                    rel="noopener noreferrer"
+                    href="https://drive.google.com/file/d/1hbefU2BtEhDZkkbpoR2jxZgdQ1enwocz/view?usp=sharing"
+                    target="_blank"
+                  >
+                    <ListItemAvatar>
+                      <Avatar className={classes.pink}>
+                        <YouTubeIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="ทุนอุดหนุนการศึกษา"
+                      secondary={secondary ? "Secondary text" : null}
+                    />
+                  </ListItem>
+                </List>
+              </div>
+            </Grid>
           </Widget>
         </Grid>
         <Grid item xs={12} md={6}>
           <Widget title="บทที่ 2 การใช้ระบบสารสนเทศ" disableWidgetMenu>
-            - แนะนำเว็บไซต์สำนักส่งเสริมวิชาการและงานทะเบียน
-            <br />- แนะนำการใช้ระบบทะเบียนและวัดผล
+            <Grid item xs={12}>
+              <div className={classes.root}>
+                <List dense={true}>
+                  <ListItem
+                    button
+                    selected={selectedIndex === 5}
+                    onClick={(event) => handleListItemClick(event, 5)}
+                    component={Link}
+                    rel="noopener noreferrer"
+                    href="http://academic.pcru.ac.th"
+                    target="_blank"
+                  >
+                    <ListItemAvatar>
+                      <Avatar className={classes.pink}>
+                        <YouTubeIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="แนะนำเว็บไซต์สำนักส่งเสริมวิชาการและงานทะเบียน"
+                      secondary={secondary ? "Secondary text" : null}
+                    />
+                  </ListItem>
+                  <ListItem
+                    button
+                    selected={selectedIndex === 6}
+                    onClick={(event) => handleListItemClick(event, 6)}
+                    component={Link}
+                    rel="noopener noreferrer"
+                    href="http://academic.pcru.ac.th"
+                    target="_blank"
+                  >
+                    <ListItemAvatar>
+                      <Avatar className={classes.pink}>
+                        <YouTubeIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="แนะนำการใช้ระบบทะเบียนและวัดผล"
+                      secondary={secondary ? "Secondary text" : null}
+                    />
+                  </ListItem>
+                </List>
+              </div>
+            </Grid>
           </Widget>
         </Grid>
         <Grid item xs={12} md={6}>
           <Widget title="บทที่ 3 การลงทะเบียนรายวิชาเรียน" disableWidgetMenu>
-            - การยกเว้นรายวิชาและการโอนผลการเรียน
-            <br />-
-            การเปิดรายวิชาเป็นกรณีพิเศษ/การเพิ่ม-ถอนรายวิชา/การยกเลิกรายวิชา
+            <Grid item xs={12}>
+              <div className={classes.root}>
+                <List dense={true}>
+                  <ListItem
+                    button
+                    selected={selectedIndex === 5}
+                    onClick={(event) => handleListItemClick(event, 5)}
+                    component={Link}
+                    rel="noopener noreferrer"
+                    href="http://academic.pcru.ac.th"
+                    target="_blank"
+                  >
+                    <ListItemAvatar>
+                      <Avatar className={classes.pink}>
+                        <YouTubeIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="การยกเว้นรายวิชาและการโอนผลการเรียน"
+                      secondary={secondary ? "Secondary text" : null}
+                    />
+                  </ListItem>
+                  <ListItem
+                    button
+                    selected={selectedIndex === 6}
+                    onClick={(event) => handleListItemClick(event, 6)}
+                    component={Link}
+                    rel="noopener noreferrer"
+                    href="http://academic.pcru.ac.th"
+                    target="_blank"
+                  >
+                    <ListItemAvatar>
+                      <Avatar className={classes.pink}>
+                        <YouTubeIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="การเปิดรายวิชาเป็นกรณีพิเศษ/การเพิ่ม-ถอนรายวิชา/การยกเลิกรายวิชา"
+                      secondary={secondary ? "Secondary text" : null}
+                    />
+                  </ListItem>
+                </List>
+              </div>
+            </Grid>
           </Widget>
         </Grid>
         <Grid item xs={12} md={6}>
@@ -152,10 +339,50 @@ export default function TypographyPage() {
           </Widget>
         </Grid>
         <Grid item xs={12} md={12}>
-          <Widget disableWidgetMenu>{"แบบทดสอบหลังเรียน (Post-test)"}</Widget>
+          <List dense={true}>
+            <ListItem
+              button
+              selected={selectedIndex === 0}
+              onClick={(event) => handleListItemClick(event, 0)}
+              component={Link}
+              rel="noopener noreferrer"
+              href="http://academic.pcru.ac.th"
+              target="_blank"
+            >
+              <ListItemAvatar>
+                <Avatar className={classes.green}>
+                  <AssignmentIcon />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText
+                primary="แบบทดสอบหลังเรียน (Post-test)"
+                secondary={secondary ? "Secondary text" : null}
+              />
+            </ListItem>
+          </List>
         </Grid>
         <Grid item xs={12} md={12}>
-          <Widget disableWidgetMenu>{"แบบประเมินความพึงพอใจ"}</Widget>
+          <List dense={true}>
+            <ListItem
+              button
+              selected={selectedIndex === 0}
+              onClick={(event) => handleListItemClick(event, 0)}
+              component={Link}
+              rel="noopener noreferrer"
+              href="http://academic.pcru.ac.th"
+              target="_blank"
+            >
+              <ListItemAvatar>
+                <Avatar className={classes.pink}>
+                  <LibraryAddCheckIcon />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText
+                primary="แบบประเมินความพึงพอใจ"
+                secondary={secondary ? "Secondary text" : null}
+              />
+            </ListItem>
+          </List>
         </Grid>
       </Grid>
     </>
