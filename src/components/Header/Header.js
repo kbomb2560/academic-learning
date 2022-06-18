@@ -1,17 +1,8 @@
 import React, { useState } from "react";
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  InputBase,
-  Menu,
-  MenuItem,
-} from "@material-ui/core";
+import { AppBar, Toolbar, IconButton, Menu, MenuItem } from "@material-ui/core";
 import {
   Menu as MenuIcon,
-  NotificationsNone as NotificationsIcon,
   Person as AccountIcon,
-  Search as SearchIcon,
   ArrowBack as ArrowBackIcon,
   Lock as LockIcon,
 } from "@material-ui/icons";
@@ -21,7 +12,7 @@ import classNames from "classnames";
 import useStyles from "./styles";
 
 // components
-import { Badge, Typography } from "../Wrappers";
+import { Typography } from "../Wrappers";
 import Notification from "../Notification/Notification";
 
 // context
@@ -64,9 +55,7 @@ export default function Header(props) {
 
   // local
   var [notificationsMenu, setNotificationsMenu] = useState(null);
-  var [isNotificationsUnread, setIsNotificationsUnread] = useState(true);
   var [profileMenu, setProfileMenu] = useState(null);
-  var [isSearchOpen, setSearchOpen] = useState(false);
   var rememberMe = localStorage.getItem("dataAuth");
   //const user = rememberMe ? localStorage.getItem("dataStudent") : "";
   var studentsData = JSON.parse(rememberMe);

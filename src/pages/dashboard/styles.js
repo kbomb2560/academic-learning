@@ -139,9 +139,6 @@ export default makeStyles((theme) => ({
     margin: theme.spacing(4, 0, 2),
     // fontSize: 14,
   },
-
-  //
-
   paper: {
     padding: theme.spacing(2),
     margin: "auto",

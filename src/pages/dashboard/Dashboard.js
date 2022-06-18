@@ -3,72 +3,216 @@ import { Grid } from "@material-ui/core";
 import axios from "axios";
 //import { Link } from "react-router-dom";
 // styles
-import useStyles from "./styles";
+//import useStyles from "./styles";
 //
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
+
 // components
 import PageTitle from "../../components/PageTitle";
 import Widget from "../../components/Widget";
 import { Typography } from "../../components/Wrappers";
 
-//import { makeStyles } from "@material-ui/core/styles";
-
-//import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-//import Typography from "@material-ui/core/Typography";
-import ButtonBase from "@material-ui/core/ButtonBase";
 import Notification from "../../components/Dialogs/Notification";
-import {
-  Home as HomeIcon,
-  NotificationsNone as NotificationsIcon,
-  FormatSize as TypographyIcon,
-  FilterNone as UIElementsIcon,
-  Event as EventIcon,
-  BorderAll as TableIcon,
-  QuestionAnswer as SupportIcon,
-  LibraryBooks as LibraryIcon,
-  HelpOutline as FAQIcon,
-  ArrowBack as ArrowBackIcon,
-} from "@material-ui/icons";
 
 //
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import VideocamIcon from "@material-ui/icons/Videocam";
+
 import YouTubeIcon from "@material-ui/icons/YouTube";
-import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+
 import ListItemText from "@material-ui/core/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import FolderIcon from "@material-ui/icons/Folder";
-import DeleteIcon from "@material-ui/icons/Delete";
-import { green, pink } from "@material-ui/core/colors";
+
 import Link from "@material-ui/core/Link";
 
 //
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
 import PostAddIcon from "@material-ui/icons/PostAdd";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import LibraryAddCheckIcon from "@material-ui/icons/LibraryAddCheck";
-import CodeIcon from "@material-ui/icons/Code";
-import Alert from "@material-ui/lab/Alert";
-
+import { green, pink } from "@material-ui/core/colors";
 //
+const useStyles = makeStyles((theme) => ({
+  card: {
+    minHeight: "100%",
+    display: "flex",
+    flexDirection: "column",
+  },
+  visitsNumberContainer: {
+    display: "flex",
+    alignItems: "center",
+    flexGrow: 1,
+    paddingBottom: theme.spacing(1),
+  },
+  progressSection: {
+    marginBottom: theme.spacing(1),
+  },
+  progressTitle: {
+    marginBottom: theme.spacing(2),
+  },
+  progress: {
+    marginBottom: theme.spacing(1),
+    backgroundColor: "rgb(236, 236, 236)",
+  },
+  pieChartLegendWrapper: {
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "flex-end",
+    marginRight: theme.spacing(1),
+  },
+  legendItemContainer: {
+    display: "flex",
+    alignItems: "center",
+    marginBottom: theme.spacing(1),
+  },
+  fullHeightBody: {
+    display: "flex",
+    flexGrow: 1,
+    flexDirection: "column",
+    justifyContent: "space-between",
+  },
+  tableWidget: {
+    overflowX: "auto",
+  },
+  progressBarPrimary: {
+    backgroundColor: theme.palette.primary.main,
+  },
+  progressBarWarning: {
+    backgroundColor: theme.palette.warning.main,
+  },
+  performanceLegendWrapper: {
+    display: "flex",
+    flexGrow: 1,
+    alignItems: "center",
+    marginBottom: theme.spacing(1),
+  },
+  legendElement: {
+    display: "flex",
+    alignItems: "center",
+    marginRight: theme.spacing(2),
+  },
+  legendElementText: {
+    marginLeft: theme.spacing(1),
+  },
+  serverOverviewElement: {
+    display: "flex",
+    alignItems: "center",
+    maxWidth: "100%",
+  },
+  serverOverviewElementText: {
+    minWidth: 145,
+    paddingRight: theme.spacing(2),
+  },
+  serverOverviewElementChartWrapper: {
+    width: "100%",
+  },
+  mainChartBody: {
+    overflowX: "auto",
+  },
+  mainChartHeader: {
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    [theme.breakpoints.only("xs")]: {
+      flexWrap: "wrap",
+    },
+  },
+  mainChartHeaderLabels: {
+    display: "flex",
+    alignItems: "center",
+    [theme.breakpoints.only("xs")]: {
+      order: 3,
+      width: "100%",
+      justifyContent: "center",
+      marginTop: theme.spacing(3),
+      marginBottom: theme.spacing(2),
+    },
+  },
+  mainChartHeaderLabel: {
+    display: "flex",
+    alignItems: "center",
+    marginLeft: theme.spacing(3),
+  },
+  mainChartSelectRoot: {
+    borderColor: theme.palette.text.hint + "80 !important",
+  },
+  mainChartSelect: {
+    padding: 10,
+    paddingRight: 25,
+  },
+  mainChartLegentElement: {
+    fontSize: "18px !important",
+    marginLeft: theme.spacing(1),
+  },
+  success: {
+    backgroundColor: theme.palette.success.main,
+    color: "#fff",
+  },
+  warning: {
+    backgroundColor: theme.palette.warning.main,
+    color: "#fff",
+  },
+  secondary: {
+    backgroundColor: theme.palette.secondary.main,
+    color: "#fff",
+  },
+  //
+  root: {
+    flexGrow: 1,
+    //maxWidth: 752,
+  },
+  // demo: {
+  //   backgroundColor: theme.palette.background.paper,
+  // },
+  title: {
+    margin: theme.spacing(4, 0, 2),
+    // fontSize: 14,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    margin: "auto",
+    maxWidth: 500,
+  },
+  image: {
+    width: 128,
+    height: 128,
+  },
+  img: {
+    margin: "auto",
+    display: "block",
+    maxWidth: "100%",
+    maxHeight: "100%",
+  },
+  widgcolor: {
+    backgroundColor: "#e91e63",
+  },
+  pink: {
+    color: theme.palette.getContrastText(pink[500]),
+    backgroundColor: pink[500],
+  },
+  green: {
+    color: "#fff",
+    backgroundColor: green[500],
+  },
+  bullet: {
+    display: "inline-block",
+    margin: "0 2px",
+    transform: "scale(0.8)",
+  },
+  // title: {
+  //   fontSize: 14,
+  // },
+  pos: {
+    marginBottom: 12,
+  },
+}));
 
 const TypographyPage = (props) => {
   //export default function TypographyPage() {
   var classes = useStyles();
-  const [dense, setDense] = useState(false);
   const [secondary, setSecondary] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState();
 
@@ -101,7 +245,7 @@ const TypographyPage = (props) => {
 
   const handleSubmitAdd = async (data) => {
     //e.preventDefault();
-    console.log("test ", data);
+    //console.log("test ", data);
 
     var rememberMe = localStorage.getItem("dataAuth");
     //const user = rememberMe ? localStorage.getItem("dataStudent") : "";
@@ -189,7 +333,6 @@ const TypographyPage = (props) => {
     //
     //reset();
     //return;
-
     //
   };
 
@@ -327,48 +470,8 @@ const TypographyPage = (props) => {
                 setIsAssessment(false);
               }
 
-              //-- set ค่าให้กับตัวแปร Joi --//
-              //setVal(res.data.STD2Learning.REF_QN_PROVINCE_ID);
-
-              /****ทดสอบรับค่า */
-
-              // setMilitaryID(res.data.STD2Learning.QN_MILITARY_STATUS);
-              //setOrdinateID(res.data.STD2Learning.QN_ORDINATE_STATUS);
-
-              // if (res.data.STD2Learning.QN_REQUIRE_EDU === "1") {
-              //   setisShowRequireEdu24(true);
-              //   setIsShowRequireEdu(true);
-              // } else {
-              //   setisShowRequireEdu24(true);
-              //   setIsShowRequireEdu(false);
-              // }
-
-              // if (res.data.STD2Learning.QN_WORKNEED_ID === "02") {
-              //   setIsShowInter(true); //แสดง TextBox การทำงานต่างประเทศ
-              // } else {
-              //   //setInterWorkNeedID('0');
-              //   setIsShowInter(false); //แสดง TextBox ทำงานภายในประเทศ ค่าที่เกี่ยวข้องต้องเป็นค่าว่าง
-              // }
-              ///
-
-              /*
-              setrefProvinceID(res.data.STD2Learning.REF_QN_PROVINCE_ID);
-              */
-              /*
-            setrefProvinceID(
-              res.data.STD2Learning.REF_QN_PROVINCE_ID
-            );
-            */
-              /*
-              console.log('GENDER_ID =', res.data.STD2Learning.GENDER_ID);
-
-              console.log(
-                'province =',
-                res.data.STD2Learning.REF_QN_PROVINCE_ID
-              );
-              */
               //-- จบส่วนของการ set ค่าให้กับตัวแปร Joi --//
-              console.log("มีข้อมูลนี้เรียนแล้ว");
+              //console.log("มีข้อมูลนี้เรียนแล้ว");
               //console.log("xxx=", response.data.bunditSTD.std_code);
               //localStorage.setItem("StudentData", response.data.id.data);
               //setError(false);
@@ -376,10 +479,7 @@ const TypographyPage = (props) => {
               //history.push("/app/dashboard");
             }, 1000);
           } else {
-            //username ผิด
-            //password ผิด
-            console.log("ไม่พบข้อมูล");
-
+            //console.log("ไม่พบข้อมูล");
             //dispatch({ type: "LOGIN_FAILURE" });
             //setError(true);
             //setIsLoading(false);
@@ -398,7 +498,7 @@ const TypographyPage = (props) => {
           }
         });
     } catch (error) {
-      console.log("err");
+      //console.log("err");
     }
   };
   //====================================

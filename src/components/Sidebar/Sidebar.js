@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Drawer, IconButton, List } from "@material-ui/core";
 import {
-  Videocam as Videocam,
-  NotificationsNone as NotificationsIcon,
-  FormatSize as TypographyIcon,
-  FilterNone as UIElementsIcon,
-  Event as EventIcon,
-  BorderAll as TableIcon,
-  QuestionAnswer as SupportIcon,
-  LibraryBooks as LibraryIcon,
-  HelpOutline as FAQIcon,
+  Videocam as VideocamIcon,
   ArrowBack as ArrowBackIcon,
 } from "@material-ui/icons";
 import { useTheme } from "@material-ui/styles";
@@ -39,7 +31,12 @@ import {
 //if(chkUserType.)
 //if (chkUserType.USER_TYPE === "student") {
 const user_menu = [
-  { id: 0, label: "Learn", link: "/app/dashboard", icon: <Videocam /> },
+  {
+    id: 0,
+    label: "Learn",
+    link: `${process.env.PUBLIC_URL}/app/dashboard`,
+    icon: <VideocamIcon />,
+  },
   // {
   //   id: 3,
   //   label: "ข้อมูลผู้ดูแลทุน",
@@ -68,12 +65,12 @@ function Sidebar({ location }) {
     };
   });
 
-  var checkUserType = localStorage.getItem("dataAuth")
-    ? localStorage.getItem("dataAuth")
-    : "";
+  // var checkUserType = localStorage.getItem("dataAuth")
+  //   ? localStorage.getItem("dataAuth")
+  //   : "";
 
-  var chkUserType = checkUserType ? JSON.parse(checkUserType) : "";
-  const typeLogin = chkUserType.USER_TYPE;
+  //var chkUserType = checkUserType ? JSON.parse(checkUserType) : "";
+  //const typeLogin = chkUserType.USER_TYPE;
   return (
     <Drawer
       variant={isPermanent ? "permanent" : "temporary"}

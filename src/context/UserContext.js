@@ -90,6 +90,7 @@ function creatStudents(
             setIsLoading(false);
             dispatch({ type: "LOGIN_SUCCESS" });
             history.push("/app/dashboard");
+            history.push(`${process.env.PUBLIC_URL}/app/dashboard`);
           }, 2000);
         } else {
           //username ผิด
@@ -151,7 +152,7 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
             setError(false);
             setIsLoading(false);
             dispatch({ type: "LOGIN_SUCCESS" });
-            history.push("/app/dashboard");
+            history.push(`${process.env.PUBLIC_URL}/app/dashboard`);
           }, 2000);
         } else {
           //username ผิด
@@ -225,5 +226,5 @@ function signOut(dispatch, history) {
   localStorage.removeItem("dataAuth");
   //localStorage.removeItem("StudentData");
   dispatch({ type: "SIGN_OUT_SUCCESS" });
-  history.push("/login");
+  history.push(`${process.env.PUBLIC_URL}/login`);
 }

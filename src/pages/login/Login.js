@@ -19,7 +19,7 @@ import { withRouter } from "react-router-dom";
 import useStyles from "./styles";
 
 // logo
-import logo from "./logopng.png";
+//import logo from "./logopng.png";
 
 // context
 import { useUserDispatch, loginUser } from "../../context/UserContext";

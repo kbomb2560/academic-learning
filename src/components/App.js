@@ -18,14 +18,28 @@ export default function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" render={() => <Redirect to="/app/dashboard" />} />
         <Route
           exact
-          path="/app"
-          render={() => <Redirect to="/app/dashboard" />}
+          path={`${process.env.PUBLIC_URL}/`}
+          render={() => (
+            <Redirect to={`${process.env.PUBLIC_URL}/app/dashboard`} />
+          )}
         />
-        <PrivateRoute path="/app" component={Layout} />
-        <PublicRoute path="/login" component={Login} />
+        <Route
+          exact
+          path={`${process.env.PUBLIC_URL}/app`}
+          render={() => (
+            <Redirect to={`${process.env.PUBLIC_URL}/app/dashboard`} />
+          )}
+        />
+        <PrivateRoute
+          path={`${process.env.PUBLIC_URL}/app`}
+          component={Layout}
+        />
+        <PublicRoute
+          path={`${process.env.PUBLIC_URL}/login`}
+          component={Login}
+        />
         <Route component={Error} />
       </Switch>
     </BrowserRouter>
@@ -43,7 +57,7 @@ export default function App() {
           ) : (
             <Redirect
               to={{
-                pathname: "/login",
+                pathname: `${process.env.PUBLIC_URL}/login`,
                 state: {
                   from: props.location,
                 },
@@ -63,7 +77,7 @@ export default function App() {
           isAuthenticated ? (
             <Redirect
               to={{
-                pathname: "/",
+                pathname: `${process.env.PUBLIC_URL}/`,
               }}
             />
           ) : (

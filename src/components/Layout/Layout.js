@@ -20,7 +20,7 @@ import Typography from "../../pages/typography";
 import Notifications from "../../pages/notifications";
 import Maps from "../../pages/maps";
 import Tables from "../../pages/tables";
-import Students from "../../pages/datastudents";
+
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
 
@@ -45,19 +45,40 @@ function Layout(props) {
         >
           <div className={classes.fakeToolbar} />
           <Switch>
-            <Route path="/app/dashboard" component={Dashboard} />
-            <Route path="/app/typography" component={Typography} />
-            <Route path="/app/tables" component={Tables} />
-            <Route path="/app/students" component={Students} />
-            <Route path="/app/notifications" component={Notifications} />
+            <Route
+              path={`${process.env.PUBLIC_URL}/app/dashboard`}
+              component={Dashboard}
+            />
+            <Route
+              path={`${process.env.PUBLIC_URL}/app/typography`}
+              component={Typography}
+            />
+            <Route
+              path={`${process.env.PUBLIC_URL}/app/tables`}
+              component={Tables}
+            />
+
+            <Route
+              path={`${process.env.PUBLIC_URL}/app/notifications`}
+              component={Notifications}
+            />
             <Route
               exact
-              path="/app/ui"
+              path={`${process.env.PUBLIC_URL}/app/ui`}
               render={() => <Redirect to="/app/ui/icons" />}
             />
-            <Route path="/app/ui/maps" component={Maps} />
-            <Route path="/app/ui/icons" component={Icons} />
-            <Route path="/app/ui/charts" component={Charts} />
+            <Route
+              path={`${process.env.PUBLIC_URL}/app/ui/maps`}
+              component={Maps}
+            />
+            <Route
+              path={`${process.env.PUBLIC_URL}/app/ui/icons`}
+              component={Icons}
+            />
+            <Route
+              path={`${process.env.PUBLIC_URL}/app/ui/charts`}
+              component={Charts}
+            />
           </Switch>
           <Box
             mt={5}
