@@ -10,6 +10,7 @@ import {
   Paper,
   Avatar,
   CssBaseline,
+  Link,
 } from "@material-ui/core";
 import { LockOutlined as LockOutlinedIcon } from "@material-ui/icons";
 import { withRouter } from "react-router-dom";
@@ -40,8 +41,10 @@ function Login(props) {
 
   //var [loginValue, setLoginValue] = useState("653004"); //user email
   //var [passwordValue, setPasswordValue] = useState("b@mb"); //password
-  var [loginValue, setLoginValue] = useState("651102064101"); //user email
-  var [passwordValue, setPasswordValue] = useState("200942"); //password
+  //var [loginValue, setLoginValue] = useState("651102064101"); //user email
+  //var [passwordValue, setPasswordValue] = useState("200942"); //password
+  var [loginValue, setLoginValue] = useState(""); //user email
+  var [passwordValue, setPasswordValue] = useState(""); //password
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -82,9 +85,10 @@ function Login(props) {
               }}
               value={loginValue}
               onChange={(e) => setLoginValue(e.target.value)}
-              margin="normal"
-              placeholder="Email Adress"
+              margin="normal "
+              placeholder="รหัสนักศึกษา"
               type="email"
+              inputProps={{ maxLength: 12 }}
               fullWidth
             />
             <TextField
@@ -128,6 +132,16 @@ function Login(props) {
                 </Button>
               )}
             </div>
+            <Link
+              color={"primary"}
+              href={
+                "https://www.canva.com/design/DAFECTF1TA0/3NFnY4Y9NCXaFnZ78J_99Q/view?utm_content=DAFECTF1TA0&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink"
+              }
+              target={"_blank"}
+              className={classes.link}
+            >
+              {">> คู่มือการใช้งาน <<"}
+            </Link>
           </React.Fragment>
 
           <Typography color="primary" className={classes.copyright}>

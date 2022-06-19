@@ -23,7 +23,7 @@ import Tables from "../../pages/tables";
 
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
-
+import { textTypography } from "../../components/Wrappers";
 // context
 import { useLayoutState } from "../../context/LayoutContext";
 
@@ -104,6 +104,11 @@ function Layout(props) {
               >
                 ระบบทะเบียนและวัดผล
               </Link>
+
+              <textTypography color={"primary"} className={classes.link}>
+                {" "}
+                Tel. 0-5671-7119
+              </textTypography>
             </div>
             <div>
               <Link
@@ -111,7 +116,7 @@ function Layout(props) {
                 target={"_blank"}
               >
                 <IconButton aria-label="facebook">
-                  <Icon path={FacebookIcon} size={1} color="#6E6E6E99" />
+                  <Icon path={FacebookIcon} size={1} color="#3860BB" />
                 </IconButton>
               </Link>
             </div>

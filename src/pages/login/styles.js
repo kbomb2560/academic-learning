@@ -161,7 +161,13 @@ export default makeStyles((theme) => ({
     backgroundSize: "cover",
     backgroundPosition: "center",
     height: "100vh",
+    fontFamily: "Prompt",
   },
+
+  typography: {
+    fontFamily: "Prompt",
+  },
+
   container: {
     /*
     height: "100vh",
@@ -328,6 +334,17 @@ export default makeStyles((theme) => ({
   },
   pos: {
     marginBottom: 12,
+  },
+
+  link: {
+    "&:not(:first-child)": {
+      paddingLeft: 15,
+    },
+    textDecoration: "none",
+    "&:hover": {
+      color: "#C172FE",
+      textDecoration: "none",
+    },
   },
   copyright: {
     marginTop: theme.spacing(4),

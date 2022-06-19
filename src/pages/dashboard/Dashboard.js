@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Grid } from "@material-ui/core";
+import { Grid, CircularProgress } from "@material-ui/core";
+import { Alert, AlertTitle } from "@material-ui/lab";
 import axios from "axios";
 //import { Link } from "react-router-dom";
 // styles
@@ -205,6 +206,9 @@ const useStyles = makeStyles((theme) => ({
   // title: {
   //   fontSize: 14,
   // },
+  loginLoader: {
+    marginLeft: theme.spacing(4),
+  },
   pos: {
     marginBottom: 12,
   },
@@ -236,6 +240,7 @@ const TypographyPage = (props) => {
   const [isAssessment, setIsAssessment] = useState(false);
   //const
 
+  const [nonData, setNonData] = useState(false); //fail
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -474,8 +479,9 @@ const TypographyPage = (props) => {
               //console.log("มีข้อมูลนี้เรียนแล้ว");
               //console.log("xxx=", response.data.bunditSTD.std_code);
               //localStorage.setItem("StudentData", response.data.id.data);
-              //setError(false);
-              //setIsLoading(false);
+              setIsError(false);
+              setIsLoading(false);
+              setNonData(false);
               //history.push("/app/dashboard");
             }, 1000);
           } else {
@@ -483,6 +489,9 @@ const TypographyPage = (props) => {
             //dispatch({ type: "LOGIN_FAILURE" });
             //setError(true);
             //setIsLoading(false);
+            setIsError(false);
+            setIsLoading(false);
+            setNonData(false);
           }
         })
         .catch(function (error) {
@@ -503,433 +512,474 @@ const TypographyPage = (props) => {
   };
   //====================================
   //
+  let content = (
+    <div
+      style={{
+        alignItems: "center",
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      <CircularProgress
+        size={30}
+        className={classes.loginLoader}
+        color="secondary"
+      />
+    </div>
+  );
 
+  if (!isLoading) {
+    if (isError) {
+      //content = "ไม่สามารถโหลดข้อมูลได้";
+      //      console.log("eeerrrx");
+      if (nonData) {
+        content = (
+          <Alert severity="warning">
+            <AlertTitle>{"แจ้งเตือน"}</AlertTitle>
+            {"ไม่พบข้อมูล!"}
+          </Alert>
+        );
+      } else {
+        content = (
+          <Alert severity="error">
+            <AlertTitle>{"แจ้งเตือน"}</AlertTitle>
+            {"ไม่สามารถโหลดข้อมูลได้! กรุณาติดต่อผู้ดูแลระบบ!!"}
+          </Alert>
+        );
+      }
+    } else {
+      content = (
+        <Grid container spacing={1}>
+          <Grid item xs={12}>
+            <Widget
+              title="ข้อมูลส่วนตัว"
+              disableWidgetMenu
+              noWidgetShadow
+              style={{ color: "red" }}
+            >
+              <Typography>รหัสนักศึกษา {studentsSTDCODE}</Typography>
+              <Typography>ชื่อ-สกุล {studentsFullname}</Typography>
+              <Typography>{studentsFAC_NAME}</Typography>
+              <Typography>{stduentsMajor_anme}</Typography>
+            </Widget>
+          </Grid>
+
+          <Grid item xs={12} md={12}>
+            <List dense={true}>
+              <ListItem
+                button
+                selected={selectedIndex === 1}
+                onClick={(event) => handleListItemClick(event, 1)}
+                component={Link}
+                rel="noopener noreferrer"
+                href="https://forms.gle/qteXKYDD1RbzGDkA6"
+                target="_blank"
+              >
+                <ListItemAvatar>
+                  <Avatar className={classes.green}>
+                    <PostAddIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText
+                  primary="แบบทดสอบก่อนเรียน (Pre-test)"
+                  secondary={secondary ? "Secondary text" : null}
+                />
+              </ListItem>
+            </List>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Widget title="บทที่ 1 ข้อมูลเบื้องต้น" disableWidgetMenu>
+              <Grid item xs={12}>
+                <div className={classes.root}>
+                  <List dense={true}>
+                    <ListItem
+                      button
+                      selected={selectedIndex === 2}
+                      onClick={(event) => handleListItemClick(event, 2)}
+                      component={Link}
+                      rel="noopener noreferrer"
+                      href="https://youtu.be/gyqVXqWFV4I"
+                      target="_blank"
+                      disabled={!isLesson1}
+                    >
+                      <ListItemAvatar>
+                        <Avatar className={classes.pink}>
+                          <YouTubeIcon />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary="ข้อมูลเบื้องต้นเกี่ยวกับการเรียนของนักศึกษาใหม่"
+                        secondary={secondary ? "Secondary text" : null}
+                      />
+                    </ListItem>
+                    <ListItem
+                      button
+                      selected={selectedIndex === 3}
+                      onClick={(event) => handleListItemClick(event, 3)}
+                      component={Link}
+                      rel="noopener noreferrer"
+                      href="https://youtu.be/W3vrIzqYrG0"
+                      target="_blank"
+                      disabled={!isLesson2}
+                    >
+                      <ListItemAvatar>
+                        <Avatar className={classes.pink}>
+                          <YouTubeIcon />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary="การตรวจสอบคุณวุฒิการศึกษาเดิม"
+                        secondary={secondary ? "Secondary text" : null}
+                      />
+                    </ListItem>
+                    <ListItem
+                      button
+                      selected={selectedIndex === 4}
+                      onClick={(event) => handleListItemClick(event, 4)}
+                      component={Link}
+                      rel="noopener noreferrer"
+                      href="https://youtu.be/_SWIrnKXPLw"
+                      target="_blank"
+                      disabled={!isLesson3}
+                    >
+                      <ListItemAvatar>
+                        <Avatar className={classes.pink}>
+                          <YouTubeIcon />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary="ทุนอุดหนุนการศึกษา"
+                        secondary={secondary ? "Secondary text" : null}
+                      />
+                    </ListItem>
+                  </List>
+                </div>
+              </Grid>
+            </Widget>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Widget title="บทที่ 2 การใช้ระบบสารสนเทศ" disableWidgetMenu>
+              <Grid item xs={12}>
+                <div className={classes.root}>
+                  <List dense={true}>
+                    <ListItem
+                      button
+                      selected={selectedIndex === 5}
+                      onClick={(event) => handleListItemClick(event, 5)}
+                      component={Link}
+                      rel="noopener noreferrer"
+                      href="https://youtu.be/HKJ2AUmGEMQ"
+                      target="_blank"
+                      disabled={!isLesson4}
+                    >
+                      <ListItemAvatar>
+                        <Avatar className={classes.pink}>
+                          <YouTubeIcon />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary="แนะนำเว็บไซต์สำนักส่งเสริมวิชาการและงานทะเบียน"
+                        secondary={secondary ? "Secondary text" : null}
+                      />
+                    </ListItem>
+                    <ListItem
+                      button
+                      selected={selectedIndex === 6}
+                      onClick={(event) => handleListItemClick(event, 6)}
+                      component={Link}
+                      rel="noopener noreferrer"
+                      href="https://youtu.be/MfUAGFuLDa0"
+                      target="_blank"
+                      disabled={!isLesson5}
+                    >
+                      <ListItemAvatar>
+                        <Avatar className={classes.pink}>
+                          <YouTubeIcon />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary="แนะนำการใช้ระบบทะเบียนและวัดผลนักศึกษา"
+                        secondary={secondary ? "Secondary text" : null}
+                      />
+                    </ListItem>
+                  </List>
+                </div>
+              </Grid>
+            </Widget>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Widget title="บทที่ 3 การลงทะเบียนรายวิชาเรียน" disableWidgetMenu>
+              <Grid item xs={12}>
+                <div className={classes.root}>
+                  <List dense={true}>
+                    <ListItem
+                      button
+                      selected={selectedIndex === 7}
+                      onClick={(event) => handleListItemClick(event, 7)}
+                      component={Link}
+                      rel="noopener noreferrer"
+                      href="https://youtu.be/Is2mrR6bRIE"
+                      target="_blank"
+                      disabled={!isLesson6}
+                    >
+                      <ListItemAvatar>
+                        <Avatar className={classes.pink}>
+                          <YouTubeIcon />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary="การยกเว้นรายวิชาและการโอนผลการเรียน"
+                        secondary={secondary ? "Secondary text" : null}
+                      />
+                    </ListItem>
+                    <ListItem
+                      button
+                      selected={selectedIndex === 8}
+                      onClick={(event) => handleListItemClick(event, 8)}
+                      component={Link}
+                      rel="noopener noreferrer"
+                      href="https://youtu.be/SSUgAwnLf7k"
+                      target="_blank"
+                      disabled={!isLesson7}
+                    >
+                      <ListItemAvatar>
+                        <Avatar className={classes.pink}>
+                          <YouTubeIcon />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary="การเปิดรายวิชาเป็นกรณีพิเศษ/การเพิ่ม-ถอนรายวิชา/การยกเลิกรายวิชา"
+                        secondary={secondary ? "Secondary text" : null}
+                      />
+                    </ListItem>
+                  </List>
+                </div>
+              </Grid>
+            </Widget>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Widget
+              title="บทที่ 4 ผลการเรียนและการสำเร็จการศึกษา"
+              disableWidgetMenu
+            >
+              <Grid item xs={12}>
+                <div className={classes.root}>
+                  <List dense={true}>
+                    <ListItem
+                      button
+                      selected={selectedIndex === 9}
+                      onClick={(event) => handleListItemClick(event, 9)}
+                      component={Link}
+                      rel="noopener noreferrer"
+                      href="https://youtu.be/jkaD40aag3o"
+                      target="_blank"
+                      disabled={!isLesson8}
+                    >
+                      <ListItemAvatar>
+                        <Avatar className={classes.pink}>
+                          <YouTubeIcon />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary="การตรวจสอบผลการเรียนและพ้นสภาพวัดผลทางทะเบียน"
+                        secondary={secondary ? "Secondary text" : null}
+                      />
+                    </ListItem>
+                    <ListItem
+                      button
+                      selected={selectedIndex === 10}
+                      onClick={(event) => handleListItemClick(event, 10)}
+                      component={Link}
+                      rel="noopener noreferrer"
+                      href="https://youtu.be/q-STa6ZagUc"
+                      target="_blank"
+                      disabled={!isLesson9}
+                    >
+                      <ListItemAvatar>
+                        <Avatar className={classes.pink}>
+                          <YouTubeIcon />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary="การสำเร็จการศึกษาและการได้รับเกียรตินิยม"
+                        secondary={secondary ? "Secondary text" : null}
+                      />
+                    </ListItem>
+                    <ListItem
+                      button
+                      selected={selectedIndex === 11}
+                      onClick={(event) => handleListItemClick(event, 11)}
+                      component={Link}
+                      rel="noopener noreferrer"
+                      href="https://youtu.be/10IpK9EPhas"
+                      target="_blank"
+                      disabled={!isLesson10}
+                    >
+                      <ListItemAvatar>
+                        <Avatar className={classes.pink}>
+                          <YouTubeIcon />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary="เวลาเรียนและการขาดสอบปลายภาค"
+                        secondary={secondary ? "Secondary text" : null}
+                      />
+                    </ListItem>
+                  </List>
+                </div>
+              </Grid>
+            </Widget>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Widget title="บทที่ 5 คำร้องต่าง ๆ ด้านวิชาการ" disableWidgetMenu>
+              <Grid item xs={12}>
+                <div className={classes.root}>
+                  <List dense={true}>
+                    <ListItem
+                      button
+                      selected={selectedIndex === 12}
+                      onClick={(event) => handleListItemClick(event, 12)}
+                      component={Link}
+                      rel="noopener noreferrer"
+                      href="https://youtu.be/gKrBgFd6_bc"
+                      target="_blank"
+                      disabled={!isLesson11}
+                    >
+                      <ListItemAvatar>
+                        <Avatar className={classes.pink}>
+                          <YouTubeIcon />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary="การพักการเรียนและการคืนสถาพนักศึกษา
+                      (การขอลาพักการศึกษา/การขอรักษาสถานภาพการเป็นนักศึกษา/การขอคืนสถานภาพการเป็นนักศึกษา)"
+                        secondary={secondary ? "Secondary text" : null}
+                      />
+                    </ListItem>
+                    <ListItem
+                      button
+                      selected={selectedIndex === 13}
+                      onClick={(event) => handleListItemClick(event, 13)}
+                      component={Link}
+                      rel="noopener noreferrer"
+                      href="https://youtu.be/azUXe6W9WIM"
+                      target="_blank"
+                      disabled={!isLesson12}
+                    >
+                      <ListItemAvatar>
+                        <Avatar className={classes.pink}>
+                          <YouTubeIcon />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary="การขอใบรับรองและใบรายงานผลการเรียน
+                      (การขอใบรับรองการเป็นนักศึกษา/ ใบรายงานผลการเรียน)"
+                        secondary={secondary ? "Secondary text" : null}
+                      />
+                    </ListItem>
+                    <ListItem
+                      button
+                      selected={selectedIndex === 14}
+                      onClick={(event) => handleListItemClick(event, 14)}
+                      component={Link}
+                      rel="noopener noreferrer"
+                      href="https://youtu.be/6YAnsi7NoBY"
+                      target="_blank"
+                      disabled={!isLesson13}
+                    >
+                      <ListItemAvatar>
+                        <Avatar className={classes.pink}>
+                          <YouTubeIcon />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary="การย้ายและการลาออก (การย้ายสาขาวิชา/การย้ายภาค (จากปกติไป
+                        กศ.ปช.)/การย้ายสถานศึกษา/การลาออก)"
+                        secondary={secondary ? "Secondary text" : null}
+                      />
+                    </ListItem>
+                    <ListItem
+                      button
+                      selected={selectedIndex === 15}
+                      onClick={(event) => handleListItemClick(event, 15)}
+                      component={Link}
+                      rel="noopener noreferrer"
+                      href="https://youtu.be/e-ggdaVydZY"
+                      target="_blank"
+                      disabled={!isLesson14}
+                    >
+                      <ListItemAvatar>
+                        <Avatar className={classes.pink}>
+                          <YouTubeIcon />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary="การเปลี่ยนชื่อ - สกุล (การเปลี่ยนชื่อ-สกุล ยศ)"
+                        secondary={secondary ? "Secondary text" : null}
+                      />
+                    </ListItem>
+                  </List>
+                </div>
+              </Grid>
+            </Widget>
+          </Grid>
+          <Grid item xs={12} md={12}>
+            <List dense={true}>
+              <ListItem
+                button
+                selected={selectedIndex === 16}
+                onClick={(event) => handleListItemClick(event, 16)}
+                component={Link}
+                rel="noopener noreferrer"
+                href="https://forms.gle/LH8jmqnF765dvvwQA"
+                target="_blank"
+                disabled={!isPostest}
+              >
+                <ListItemAvatar>
+                  <Avatar className={classes.green}>
+                    <AssignmentIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText
+                  primary="แบบทดสอบหลังเรียน (Post-test)"
+                  secondary={secondary ? "Secondary text" : null}
+                />
+              </ListItem>
+            </List>
+          </Grid>
+          <Grid item xs={12} md={12}>
+            <List dense={true}>
+              <ListItem
+                button
+                selected={selectedIndex === 17}
+                onClick={(event) => handleListItemClick(event, 17)}
+                component={Link}
+                rel="noopener noreferrer"
+                href="https://forms.gle/2RdXtrniEH6LChJA7"
+                target="_blank"
+                disabled={!isAssessment}
+              >
+                <ListItemAvatar>
+                  <Avatar className={classes.pink}>
+                    <LibraryAddCheckIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText
+                  primary="แบบประเมินความพึงพอใจ"
+                  secondary={secondary ? "Secondary text" : null}
+                />
+              </ListItem>
+            </List>
+          </Grid>
+        </Grid>
+      );
+    }
+  }
   return (
     <>
       <PageTitle title="บทเรียนออนไลน์" />
-      <Grid container spacing={1}>
-        <Grid item xs={12}>
-          <Widget
-            title="ข้อมูลส่วนตัว"
-            disableWidgetMenu
-            noWidgetShadow
-            style={{ color: "red" }}
-          >
-            <Typography>รหัสนักศึกษา {studentsSTDCODE}</Typography>
-            <Typography>ชื่อ-สกุล {studentsFullname}</Typography>
-            <Typography>{studentsFAC_NAME}</Typography>
-            <Typography>{stduentsMajor_anme}</Typography>
-          </Widget>
-        </Grid>
+      {content}
 
-        <Grid item xs={12} md={12}>
-          <List dense={true}>
-            <ListItem
-              button
-              selected={selectedIndex === 1}
-              onClick={(event) => handleListItemClick(event, 1)}
-              component={Link}
-              rel="noopener noreferrer"
-              href="https://forms.gle/qteXKYDD1RbzGDkA6"
-              target="_blank"
-            >
-              <ListItemAvatar>
-                <Avatar className={classes.green}>
-                  <PostAddIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText
-                primary="แบบทดสอบก่อนเรียน (Pre-test)"
-                secondary={secondary ? "Secondary text" : null}
-              />
-            </ListItem>
-          </List>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Widget title="บทที่ 1 ข้อมูลเบื้องต้น" disableWidgetMenu>
-            <Grid item xs={12}>
-              <div className={classes.root}>
-                <List dense={true}>
-                  <ListItem
-                    button
-                    selected={selectedIndex === 2}
-                    onClick={(event) => handleListItemClick(event, 2)}
-                    component={Link}
-                    rel="noopener noreferrer"
-                    href="https://drive.google.com/file/d/1pH2QBBhznXaMGHOeJkWCdKI_9r9yi0HY/view?usp=sharing"
-                    target="_blank"
-                    disabled={!isLesson1}
-                  >
-                    <ListItemAvatar>
-                      <Avatar className={classes.pink}>
-                        <YouTubeIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary="ข้อมูลเบื้องต้นเกี่ยวกับการเรียนของนักศึกษาใหม่"
-                      secondary={secondary ? "Secondary text" : null}
-                    />
-                  </ListItem>
-                  <ListItem
-                    button
-                    selected={selectedIndex === 3}
-                    onClick={(event) => handleListItemClick(event, 3)}
-                    component={Link}
-                    rel="noopener noreferrer"
-                    href="https://drive.google.com/file/d/17YqeJaM5HVi42Gbv_CQ-12hafD9nxGVU/view?usp=sharing"
-                    target="_blank"
-                    disabled={!isLesson2}
-                  >
-                    <ListItemAvatar>
-                      <Avatar className={classes.pink}>
-                        <YouTubeIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary="ตรวจสอบคุณวุฒิเดิม"
-                      secondary={secondary ? "Secondary text" : null}
-                    />
-                  </ListItem>
-                  <ListItem
-                    button
-                    selected={selectedIndex === 4}
-                    onClick={(event) => handleListItemClick(event, 4)}
-                    component={Link}
-                    rel="noopener noreferrer"
-                    href="https://drive.google.com/file/d/1hbefU2BtEhDZkkbpoR2jxZgdQ1enwocz/view?usp=sharing"
-                    target="_blank"
-                    disabled={!isLesson3}
-                  >
-                    <ListItemAvatar>
-                      <Avatar className={classes.pink}>
-                        <YouTubeIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary="ทุนอุดหนุนการศึกษา"
-                      secondary={secondary ? "Secondary text" : null}
-                    />
-                  </ListItem>
-                </List>
-              </div>
-            </Grid>
-          </Widget>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Widget title="บทที่ 2 การใช้ระบบสารสนเทศ" disableWidgetMenu>
-            <Grid item xs={12}>
-              <div className={classes.root}>
-                <List dense={true}>
-                  <ListItem
-                    button
-                    selected={selectedIndex === 5}
-                    onClick={(event) => handleListItemClick(event, 5)}
-                    component={Link}
-                    rel="noopener noreferrer"
-                    href="http://academic.pcru.ac.th"
-                    target="_blank"
-                    disabled={!isLesson4}
-                  >
-                    <ListItemAvatar>
-                      <Avatar className={classes.pink}>
-                        <YouTubeIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary="แนะนำเว็บไซต์สำนักส่งเสริมวิชาการและงานทะเบียน"
-                      secondary={secondary ? "Secondary text" : null}
-                    />
-                  </ListItem>
-                  <ListItem
-                    button
-                    selected={selectedIndex === 6}
-                    onClick={(event) => handleListItemClick(event, 6)}
-                    component={Link}
-                    rel="noopener noreferrer"
-                    href="http://academic.pcru.ac.th"
-                    target="_blank"
-                    disabled={!isLesson5}
-                  >
-                    <ListItemAvatar>
-                      <Avatar className={classes.pink}>
-                        <YouTubeIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary="แนะนำการใช้ระบบทะเบียนและวัดผล"
-                      secondary={secondary ? "Secondary text" : null}
-                    />
-                  </ListItem>
-                </List>
-              </div>
-            </Grid>
-          </Widget>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Widget title="บทที่ 3 การลงทะเบียนรายวิชาเรียน" disableWidgetMenu>
-            <Grid item xs={12}>
-              <div className={classes.root}>
-                <List dense={true}>
-                  <ListItem
-                    button
-                    selected={selectedIndex === 7}
-                    onClick={(event) => handleListItemClick(event, 7)}
-                    component={Link}
-                    rel="noopener noreferrer"
-                    href="http://academic.pcru.ac.th"
-                    target="_blank"
-                    disabled={!isLesson6}
-                  >
-                    <ListItemAvatar>
-                      <Avatar className={classes.pink}>
-                        <YouTubeIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary="การยกเว้นรายวิชาและการโอนผลการเรียน"
-                      secondary={secondary ? "Secondary text" : null}
-                    />
-                  </ListItem>
-                  <ListItem
-                    button
-                    selected={selectedIndex === 8}
-                    onClick={(event) => handleListItemClick(event, 8)}
-                    component={Link}
-                    rel="noopener noreferrer"
-                    href="http://academic.pcru.ac.th"
-                    target="_blank"
-                    disabled={!isLesson7}
-                  >
-                    <ListItemAvatar>
-                      <Avatar className={classes.pink}>
-                        <YouTubeIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary="การเปิดรายวิชาเป็นกรณีพิเศษ/การเพิ่ม-ถอนรายวิชา/การยกเลิกรายวิชา"
-                      secondary={secondary ? "Secondary text" : null}
-                    />
-                  </ListItem>
-                </List>
-              </div>
-            </Grid>
-          </Widget>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Widget
-            title="บทที่ 4 ผลการเรียนและการสำเร็จการศึกษา"
-            disableWidgetMenu
-          >
-            <Grid item xs={12}>
-              <div className={classes.root}>
-                <List dense={true}>
-                  <ListItem
-                    button
-                    selected={selectedIndex === 9}
-                    onClick={(event) => handleListItemClick(event, 9)}
-                    component={Link}
-                    rel="noopener noreferrer"
-                    href="http://academic.pcru.ac.th"
-                    target="_blank"
-                    disabled={!isLesson8}
-                  >
-                    <ListItemAvatar>
-                      <Avatar className={classes.pink}>
-                        <YouTubeIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary="การตรวจสอบผลการเรียนและพ้นสภาพวัดผลทางทะเบียน"
-                      secondary={secondary ? "Secondary text" : null}
-                    />
-                  </ListItem>
-                  <ListItem
-                    button
-                    selected={selectedIndex === 10}
-                    onClick={(event) => handleListItemClick(event, 10)}
-                    component={Link}
-                    rel="noopener noreferrer"
-                    href="http://academic.pcru.ac.th"
-                    target="_blank"
-                    disabled={!isLesson9}
-                  >
-                    <ListItemAvatar>
-                      <Avatar className={classes.pink}>
-                        <YouTubeIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary="การสำเร็จการศึกษาและการได้รับเกียรตินิยม"
-                      secondary={secondary ? "Secondary text" : null}
-                    />
-                  </ListItem>
-                  <ListItem
-                    button
-                    selected={selectedIndex === 11}
-                    onClick={(event) => handleListItemClick(event, 11)}
-                    component={Link}
-                    rel="noopener noreferrer"
-                    href="http://academic.pcru.ac.th"
-                    target="_blank"
-                    disabled={!isLesson10}
-                  >
-                    <ListItemAvatar>
-                      <Avatar className={classes.pink}>
-                        <YouTubeIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary="เวลาเรียนและการขาดสอบปลายภาค"
-                      secondary={secondary ? "Secondary text" : null}
-                    />
-                  </ListItem>
-                </List>
-              </div>
-            </Grid>
-          </Widget>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Widget title="บทที่ 5 คำร้องต่าง ๆ ด้านวิชาการ" disableWidgetMenu>
-            <Grid item xs={12}>
-              <div className={classes.root}>
-                <List dense={true}>
-                  <ListItem
-                    button
-                    selected={selectedIndex === 12}
-                    onClick={(event) => handleListItemClick(event, 12)}
-                    component={Link}
-                    rel="noopener noreferrer"
-                    href="http://academic.pcru.ac.th"
-                    target="_blank"
-                    disabled={!isLesson11}
-                  >
-                    <ListItemAvatar>
-                      <Avatar className={classes.pink}>
-                        <YouTubeIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary="การพักการเรียนและการคืนสถาพนักศึกษา
-                      (การขอลาพักการศึกษา/การขอรักษาสถานภาพการนักศึกษา/การขอคืนสถานภารการเป็นนักศึกษา)"
-                      secondary={secondary ? "Secondary text" : null}
-                    />
-                  </ListItem>
-                  <ListItem
-                    button
-                    selected={selectedIndex === 13}
-                    onClick={(event) => handleListItemClick(event, 13)}
-                    component={Link}
-                    rel="noopener noreferrer"
-                    href="http://academic.pcru.ac.th"
-                    target="_blank"
-                    disabled={!isLesson12}
-                  >
-                    <ListItemAvatar>
-                      <Avatar className={classes.pink}>
-                        <YouTubeIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary="การขอใบรับรองและใบรายงานผลการเรียน
-                      (การขอใบรับรองการเป็นนักศึกษา/ ใบรายงานผลการเรียน)"
-                      secondary={secondary ? "Secondary text" : null}
-                    />
-                  </ListItem>
-                  <ListItem
-                    button
-                    selected={selectedIndex === 14}
-                    onClick={(event) => handleListItemClick(event, 14)}
-                    component={Link}
-                    rel="noopener noreferrer"
-                    href="http://academic.pcru.ac.th"
-                    target="_blank"
-                    disabled={!isLesson13}
-                  >
-                    <ListItemAvatar>
-                      <Avatar className={classes.pink}>
-                        <YouTubeIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary="การย้ายและการลาออก (การย้ายสาขาวิชา/การย้ายภาค (จากปกติไป
-                        กศ.ปช.)/การย้ายสถานศึกษา/การลาออก)"
-                      secondary={secondary ? "Secondary text" : null}
-                    />
-                  </ListItem>
-                  <ListItem
-                    button
-                    selected={selectedIndex === 15}
-                    onClick={(event) => handleListItemClick(event, 15)}
-                    component={Link}
-                    rel="noopener noreferrer"
-                    href="http://academic.pcru.ac.th"
-                    target="_blank"
-                    disabled={!isLesson14}
-                  >
-                    <ListItemAvatar>
-                      <Avatar className={classes.pink}>
-                        <YouTubeIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary="การเปลี่ยนชื่อ - สกุล (การเปลี่ยนชื่อ-สกุล ยศ)"
-                      secondary={secondary ? "Secondary text" : null}
-                    />
-                  </ListItem>
-                </List>
-              </div>
-            </Grid>
-          </Widget>
-        </Grid>
-        <Grid item xs={12} md={12}>
-          <List dense={true}>
-            <ListItem
-              button
-              selected={selectedIndex === 16}
-              onClick={(event) => handleListItemClick(event, 16)}
-              component={Link}
-              rel="noopener noreferrer"
-              href="https://forms.gle/LH8jmqnF765dvvwQA"
-              target="_blank"
-              disabled={!isPostest}
-            >
-              <ListItemAvatar>
-                <Avatar className={classes.green}>
-                  <AssignmentIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText
-                primary="แบบทดสอบหลังเรียน (Post-test)"
-                secondary={secondary ? "Secondary text" : null}
-              />
-            </ListItem>
-          </List>
-        </Grid>
-        <Grid item xs={12} md={12}>
-          <List dense={true}>
-            <ListItem
-              button
-              selected={selectedIndex === 17}
-              onClick={(event) => handleListItemClick(event, 17)}
-              component={Link}
-              rel="noopener noreferrer"
-              href="http://academic.pcru.ac.th"
-              target="_blank"
-              disabled={!isAssessment}
-            >
-              <ListItemAvatar>
-                <Avatar className={classes.pink}>
-                  <LibraryAddCheckIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText
-                primary="แบบประเมินความพึงพอใจ"
-                secondary={secondary ? "Secondary text" : null}
-              />
-            </ListItem>
-          </List>
-        </Grid>
-      </Grid>
       <Notification notify={notify} setNotify={setNotify} />
     </>
   );
