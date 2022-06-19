@@ -1,8 +1,8 @@
 {
-  "name": "academic3learn",
+  "name": "academic2learn",
   "version": "1.1.0",
   "private": true,
-  "homepage": "/webserv/academic2learn/",
+  "homepage": "/academic-learning",
   "resolutions": {
     "websocket-extensions": "^0.1.4",
     "node-forge": "^0.10.0",
