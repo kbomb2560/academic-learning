@@ -288,7 +288,7 @@ const TypographyPage = (props) => {
       //console.log(data);
       //const result = await axios.post(`end-point`,values);
       const result = await axios.post(
-        `http://academic.pcru.ac.th/api2learning/std2learning-add-end.php`,
+        `https://academic.pcru.ac.th/api2learning/std2learning-add-end.php`,
         params,
         { headers: { "Content-Type": "multipart/form-data" } },
       );
@@ -366,7 +366,7 @@ const TypographyPage = (props) => {
     //const user = rememberMe ? localStorage.getItem("dataStudent") : "";
     var studentsDataQN = JSON.parse(rememberMeX);
     const BASE_URL_QN =
-      "http://academic.pcru.ac.th/api2learning/std-check2learning-end.php";
+      "https://academic.pcru.ac.th/api2learning/std-check2learning-end.php";
     try {
       //setError(false);
       //setIsLoading(true);
@@ -841,7 +841,7 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 12)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/gKrBgFd6_bc"
+                      href="https://youtu.be/PsMOINscYM8"
                       target="_blank"
                       disabled={!isLesson11}
                     >
