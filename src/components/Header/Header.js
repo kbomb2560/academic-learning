@@ -100,8 +100,9 @@ export default function Header(props) {
           )}
         </IconButton>
         <Typography variant="h6" weight="medium" className={classes.logotype}>
-          การให้ความรู้เกี่ยวกับระบบสารสนเทศ กฎ ระเบียบ ข้อบังคับ
-          และแนวปฏิบัติสำหรับ นักศึกษาใหม่ ประจำปีการศึกษา 2565
+          "การให้ความรู้เกี่ยวกับระบบสารสนเทศ กฎ ระเบียบ ข้อบังคับ
+          และแนวปฏิบัติสำหรับ นักศึกษาใหม่ ประจำปีการศึกษา 2566 (ภาค กศ.ปช.)"
+          รูปแบบบทเรียนออนไลน์
         </Typography>
         <div className={classes.grow} />
 

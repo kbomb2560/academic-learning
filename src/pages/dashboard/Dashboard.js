@@ -572,7 +572,7 @@ const TypographyPage = (props) => {
                 onClick={(event) => handleListItemClick(event, 1)}
                 component={Link}
                 rel="noopener noreferrer"
-                href="https://forms.gle/qteXKYDD1RbzGDkA6"
+                href="https://forms.gle/o3bGrf7qauhnuwW6A"
                 target="_blank"
               >
                 <ListItemAvatar>
@@ -598,7 +598,7 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 2)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/gyqVXqWFV4I"
+                      href="https://youtu.be/-UrLHOem9Os"
                       target="_blank"
                       disabled={!isLesson1}
                     >
@@ -618,7 +618,7 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 3)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/W3vrIzqYrG0"
+                      href="https://youtu.be/gqQG3p-9yrg"
                       target="_blank"
                       disabled={!isLesson2}
                     >
@@ -638,7 +638,7 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 4)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/_SWIrnKXPLw"
+                      href="https://youtu.be/b9lq5xm_oXY"
                       target="_blank"
                       disabled={!isLesson3}
                     >
@@ -718,7 +718,7 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 7)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/Is2mrR6bRIE"
+                      href="https://youtu.be/li_mDkfSXek"
                       target="_blank"
                       disabled={!isLesson6}
                     >
@@ -728,7 +728,7 @@ const TypographyPage = (props) => {
                         </Avatar>
                       </ListItemAvatar>
                       <ListItemText
-                        primary="การยกเว้นรายวิชาและการโอนผลการเรียน"
+                        primary="การเทียบโอนหน่วยกิตและผลการศึกษา"
                         secondary={secondary ? "Secondary text" : null}
                       />
                     </ListItem>
@@ -738,7 +738,7 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 8)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/SSUgAwnLf7k"
+                      href="https://youtu.be/6D1Y3QAyCIg"
                       target="_blank"
                       disabled={!isLesson7}
                     >
@@ -771,7 +771,7 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 9)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/jkaD40aag3o"
+                      href="https://youtu.be/zu8ItOwxih8"
                       target="_blank"
                       disabled={!isLesson8}
                     >
@@ -791,7 +791,7 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 10)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/q-STa6ZagUc"
+                      href="https://youtu.be/KVoJYuOe6w0"
                       target="_blank"
                       disabled={!isLesson9}
                     >
@@ -811,7 +811,7 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 11)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/10IpK9EPhas"
+                      href="https://youtu.be/FeCicNFrnK4"
                       target="_blank"
                       disabled={!isLesson10}
                     >
@@ -841,7 +841,7 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 12)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/PsMOINscYM8"
+                      href="https://youtu.be/fNZRtUk2DU4"
                       target="_blank"
                       disabled={!isLesson11}
                     >
@@ -862,7 +862,7 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 13)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/azUXe6W9WIM"
+                      href="https://youtu.be/WrIqM5OejF4"
                       target="_blank"
                       disabled={!isLesson12}
                     >
@@ -883,7 +883,7 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 14)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/6YAnsi7NoBY"
+                      href="https://youtu.be/WrIqM5OejF4?t=109"
                       target="_blank"
                       disabled={!isLesson13}
                     >
@@ -904,7 +904,7 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 15)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/e-ggdaVydZY"
+                      href="https://youtu.be/WrIqM5OejF4?t=164"
                       target="_blank"
                       disabled={!isLesson14}
                     >
@@ -931,7 +931,7 @@ const TypographyPage = (props) => {
                 onClick={(event) => handleListItemClick(event, 16)}
                 component={Link}
                 rel="noopener noreferrer"
-                href="https://forms.gle/LH8jmqnF765dvvwQA"
+                href="https://forms.gle/tLHXJBbfzKUMMsYE8"
                 target="_blank"
                 disabled={!isPostest}
               >
@@ -955,7 +955,7 @@ const TypographyPage = (props) => {
                 onClick={(event) => handleListItemClick(event, 17)}
                 component={Link}
                 rel="noopener noreferrer"
-                href="https://forms.gle/GDnV7up9vA5PBgZw8"
+                href="https://forms.gle/g12B2di4Z9ZTteuDA"
                 target="_blank"
                 disabled={!isAssessment}
               >
