@@ -572,7 +572,7 @@ const TypographyPage = (props) => {
                 onClick={(event) => handleListItemClick(event, 1)}
                 component={Link}
                 rel="noopener noreferrer"
-                href="https://forms.gle/o3bGrf7qauhnuwW6A"
+                href="https://academic.pcru.ac.th/academic-learning/lesson-link/linkpretest.php"
                 target="_blank"
               >
                 <ListItemAvatar>
@@ -598,7 +598,7 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 2)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/-UrLHOem9Os"
+                      href="https://academic.pcru.ac.th/academic-learning/lesson-link/lesson1-1.php"
                       target="_blank"
                       disabled={!isLesson1}
                     >
@@ -618,7 +618,7 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 3)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/gqQG3p-9yrg"
+                      href="https://academic.pcru.ac.th/academic-learning/lesson-link/lesson1-2.php"
                       target="_blank"
                       disabled={!isLesson2}
                     >
@@ -638,7 +638,7 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 4)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/b9lq5xm_oXY"
+                      href="https://academic.pcru.ac.th/academic-learning/lesson-link/lesson1-3.php"
                       target="_blank"
                       disabled={!isLesson3}
                     >
