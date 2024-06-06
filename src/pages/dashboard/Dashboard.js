@@ -598,7 +598,7 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 2)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://academic.pcru.ac.th/academic-learning/lesson-link/lesson1-1.php"
+                      href="https://academic.pcru.ac.th/academic-learning/lesson-link/lesson1-1xx.php"
                       target="_blank"
                       disabled={!isLesson1}
                     >
