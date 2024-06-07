@@ -41,8 +41,8 @@ function Login(props) {
 
   //var [loginValue, setLoginValue] = useState("653004"); //user email
   //var [passwordValue, setPasswordValue] = useState("b@mb"); //password
-  //var [loginValue, setLoginValue] = useState("651102064101"); //user email
-  //var [passwordValue, setPasswordValue] = useState("200942"); //password
+  // var [loginValue, setLoginValue] = useState("671202176101"); //user email
+  // var [passwordValue, setPasswordValue] = useState("261144"); //password
   var [loginValue, setLoginValue] = useState(""); //user email
   var [passwordValue, setPasswordValue] = useState(""); //password
   return (

@@ -98,11 +98,11 @@ function Layout(props) {
               </Link>
               <Link
                 color={"primary"}
-                href={"https://www.pmis.pcru.ac.th/mis"}
+                href={"https://www.pmis.pcru.ac.th/mis/webservice"}
                 target={"_blank"}
                 className={classes.link}
               >
-                ระบบทะเบียนและวัดผล
+                ระบบทะเบียนและวัดผลนักศึกษา
               </Link>
 
               <textTypography color={"primary"} className={classes.link}>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid, CircularProgress } from "@material-ui/core";
+import { Grid, CircularProgress,Paper } from "@material-ui/core";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import axios from "axios";
 //import { Link } from "react-router-dom";
@@ -21,6 +21,8 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 
 import YouTubeIcon from "@material-ui/icons/YouTube";
 
+
+import LockIcon from "@material-ui/icons/Lock";
 import ListItemText from "@material-ui/core/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
 
@@ -212,6 +214,38 @@ const useStyles = makeStyles((theme) => ({
   pos: {
     marginBottom: 12,
   },
+  warningLabel: {
+    backgroundColor: "#F1EF99",
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.primary,
+  },
+  responsiveText: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'block',
+      '& br': {
+        display: 'inline',
+      },
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'inline',
+      '& br': {
+        display: 'none',
+      },
+    },
+  },
+  chromeIcon: {
+    verticalAlign: 'middle',
+    marginLeft: 8,
+    width: 24, // กำหนดความกว้างของไอคอน
+    height: 24, // กำหนดความสูงของไอคอน
+  },
+  textSuccess: {
+    color: '#FF9800',
+  },
+  textPink: {
+    color: '#AF2655',
+  }, 
 }));
 
 const TypographyPage = (props) => {
@@ -557,12 +591,29 @@ const TypographyPage = (props) => {
               noWidgetShadow
               style={{ color: "red" }}
             >
-              <Typography>รหัสนักศึกษา {studentsSTDCODE}</Typography>
-              <Typography>ชื่อ-สกุล {studentsFullname}</Typography>
-              <Typography>{studentsFAC_NAME}</Typography>
-              <Typography>{stduentsMajor_anme}</Typography>
+              
+              <Typography style={{ fontSize: '20px' }}>รหัสนักศึกษา <span className={classes.textSuccess}>{studentsSTDCODE}</span></Typography>
+              <Typography style={{ fontSize: '18px' }}>ชื่อ-สกุล <span className={classes.textSuccess}>{studentsFullname}</span></Typography>
+              <Typography style={{ fontSize: '18px' }}><span className={classes.textPink}>{studentsFAC_NAME}</span></Typography>
+              <Typography style={{ fontSize: '18px' }}><span className={classes.textPink}>{stduentsMajor_anme}</span></Typography>
             </Widget>
+           
           </Grid>
+          <Grid item xs={12} md={12}>
+          <Paper className={classes.warningLabel}>
+          <Typography className={classes.responsiveText}>
+          นักศึกษาต้องเรียนทีละบทเรียน <br /> บทเรียนถัดไปถึงแสดงให้เรียนต่อได้
+        </Typography>
+        <Typography>
+          แนะนำใช้งานผ่าน Browser Google Chrome
+          <img
+            src={`${process.env.PUBLIC_URL}/images/chrome-icon.png`}
+            alt="Chrome Icon"
+            className={classes.chromeIcon}
+          />
+        </Typography>
+      </Paper> 
+      </Grid>
 
           <Grid item xs={12} md={12}>
             <List dense={true}>
@@ -598,13 +649,13 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 2)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://academic.pcru.ac.th/academic-learning/lesson-link/lesson1-1xx.php"
+                      href="https://academic.pcru.ac.th/academic-learning/lesson-link/lesson1-1.php"
                       target="_blank"
                       disabled={!isLesson1}
                     >
                       <ListItemAvatar>
                         <Avatar className={classes.pink}>
-                          <YouTubeIcon />
+                        {isLesson1 ? <YouTubeIcon /> : <LockIcon />}
                         </Avatar>
                       </ListItemAvatar>
                       <ListItemText
@@ -624,7 +675,7 @@ const TypographyPage = (props) => {
                     >
                       <ListItemAvatar>
                         <Avatar className={classes.pink}>
-                          <YouTubeIcon />
+                        {isLesson2 ? <YouTubeIcon /> : <LockIcon />}
                         </Avatar>
                       </ListItemAvatar>
                       <ListItemText
@@ -644,7 +695,7 @@ const TypographyPage = (props) => {
                     >
                       <ListItemAvatar>
                         <Avatar className={classes.pink}>
-                          <YouTubeIcon />
+                        {isLesson3 ? <YouTubeIcon /> : <LockIcon />}
                         </Avatar>
                       </ListItemAvatar>
                       <ListItemText
@@ -668,13 +719,13 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 5)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/HKJ2AUmGEMQ"
+                      href="https://academic.pcru.ac.th/academic-learning/lesson-link/lesson2-1.php"
                       target="_blank"
                       disabled={!isLesson4}
                     >
                       <ListItemAvatar>
                         <Avatar className={classes.pink}>
-                          <YouTubeIcon />
+                        {isLesson4 ? <YouTubeIcon /> : <LockIcon />}
                         </Avatar>
                       </ListItemAvatar>
                       <ListItemText
@@ -688,13 +739,13 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 6)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/MfUAGFuLDa0"
+                      href="https://academic.pcru.ac.th/academic-learning/lesson-link/lesson2-2.php"
                       target="_blank"
                       disabled={!isLesson5}
                     >
                       <ListItemAvatar>
                         <Avatar className={classes.pink}>
-                          <YouTubeIcon />
+                        {isLesson5 ? <YouTubeIcon /> : <LockIcon />}
                         </Avatar>
                       </ListItemAvatar>
                       <ListItemText
@@ -718,13 +769,13 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 7)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/li_mDkfSXek"
+                      href="https://academic.pcru.ac.th/academic-learning/lesson-link/lesson3-1.php"
                       target="_blank"
                       disabled={!isLesson6}
                     >
                       <ListItemAvatar>
                         <Avatar className={classes.pink}>
-                          <YouTubeIcon />
+                        {isLesson6 ? <YouTubeIcon /> : <LockIcon />}
                         </Avatar>
                       </ListItemAvatar>
                       <ListItemText
@@ -738,13 +789,13 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 8)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/6D1Y3QAyCIg"
+                      href="https://academic.pcru.ac.th/academic-learning/lesson-link/lesson3-2.php"
                       target="_blank"
                       disabled={!isLesson7}
                     >
                       <ListItemAvatar>
                         <Avatar className={classes.pink}>
-                          <YouTubeIcon />
+                        {isLesson7 ? <YouTubeIcon /> : <LockIcon />}
                         </Avatar>
                       </ListItemAvatar>
                       <ListItemText
@@ -771,13 +822,13 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 9)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/zu8ItOwxih8"
+                      href="https://academic.pcru.ac.th/academic-learning/lesson-link/lesson4-1.php"
                       target="_blank"
                       disabled={!isLesson8}
                     >
                       <ListItemAvatar>
                         <Avatar className={classes.pink}>
-                          <YouTubeIcon />
+                        {isLesson8 ? <YouTubeIcon /> : <LockIcon />}
                         </Avatar>
                       </ListItemAvatar>
                       <ListItemText
@@ -791,13 +842,13 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 10)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/KVoJYuOe6w0"
+                      href="https://academic.pcru.ac.th/academic-learning/lesson-link/lesson4-2.php"
                       target="_blank"
                       disabled={!isLesson9}
                     >
                       <ListItemAvatar>
                         <Avatar className={classes.pink}>
-                          <YouTubeIcon />
+                        {isLesson9 ? <YouTubeIcon /> : <LockIcon />}
                         </Avatar>
                       </ListItemAvatar>
                       <ListItemText
@@ -811,13 +862,13 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 11)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/FeCicNFrnK4"
+                      href="https://academic.pcru.ac.th/academic-learning/lesson-link/lesson4-3.php"
                       target="_blank"
                       disabled={!isLesson10}
                     >
                       <ListItemAvatar>
                         <Avatar className={classes.pink}>
-                          <YouTubeIcon />
+                        {isLesson10 ? <YouTubeIcon /> : <LockIcon />}
                         </Avatar>
                       </ListItemAvatar>
                       <ListItemText
@@ -841,13 +892,14 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 12)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/fNZRtUk2DU4"
+                      href="https://academic.pcru.ac.th/academic-learning/lesson-link/lesson5-1.php"
                       target="_blank"
                       disabled={!isLesson11}
                     >
                       <ListItemAvatar>
                         <Avatar className={classes.pink}>
-                          <YouTubeIcon />
+                          {/* <YouTubeIcon /> */}
+                          {isLesson11 ? <YouTubeIcon /> : <LockIcon />}
                         </Avatar>
                       </ListItemAvatar>
                       <ListItemText
@@ -862,13 +914,13 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 13)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/WrIqM5OejF4"
+                      href="https://academic.pcru.ac.th/academic-learning/lesson-link/lesson5-2.php"
                       target="_blank"
                       disabled={!isLesson12}
                     >
                       <ListItemAvatar>
                         <Avatar className={classes.pink}>
-                          <YouTubeIcon />
+                        {isLesson12 ? <YouTubeIcon /> : <LockIcon />}
                         </Avatar>
                       </ListItemAvatar>
                       <ListItemText
@@ -883,13 +935,13 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 14)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/WrIqM5OejF4?t=109"
+                      href="https://academic.pcru.ac.th/academic-learning/lesson-link/lesson5-3.php"
                       target="_blank"
                       disabled={!isLesson13}
                     >
                       <ListItemAvatar>
                         <Avatar className={classes.pink}>
-                          <YouTubeIcon />
+                        {isLesson13 ? <YouTubeIcon /> : <LockIcon />}
                         </Avatar>
                       </ListItemAvatar>
                       <ListItemText
@@ -904,13 +956,13 @@ const TypographyPage = (props) => {
                       onClick={(event) => handleListItemClick(event, 15)}
                       component={Link}
                       rel="noopener noreferrer"
-                      href="https://youtu.be/WrIqM5OejF4?t=164"
+                      href="https://academic.pcru.ac.th/academic-learning/lesson-link/lesson5-4.php"
                       target="_blank"
                       disabled={!isLesson14}
                     >
                       <ListItemAvatar>
                         <Avatar className={classes.pink}>
-                          <YouTubeIcon />
+                        {isLesson14 ? <YouTubeIcon /> : <LockIcon />}
                         </Avatar>
                       </ListItemAvatar>
                       <ListItemText
@@ -931,13 +983,13 @@ const TypographyPage = (props) => {
                 onClick={(event) => handleListItemClick(event, 16)}
                 component={Link}
                 rel="noopener noreferrer"
-                href="https://forms.gle/tLHXJBbfzKUMMsYE8"
+                href="https://academic.pcru.ac.th/academic-learning/lesson-link/linkposttest.php"
                 target="_blank"
                 disabled={!isPostest}
               >
                 <ListItemAvatar>
                   <Avatar className={classes.green}>
-                    <AssignmentIcon />
+                    {isPostest ? <AssignmentIcon /> : <LockIcon />}
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
@@ -955,13 +1007,13 @@ const TypographyPage = (props) => {
                 onClick={(event) => handleListItemClick(event, 17)}
                 component={Link}
                 rel="noopener noreferrer"
-                href="https://forms.gle/g12B2di4Z9ZTteuDA"
+                href="https://academic.pcru.ac.th/academic-learning/lesson-link/linkassessment.php"
                 target="_blank"
                 disabled={!isAssessment}
               >
                 <ListItemAvatar>
                   <Avatar className={classes.pink}>
-                    <LibraryAddCheckIcon />
+                    {isAssessment ? <LibraryAddCheckIcon /> : <LockIcon />}
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
@@ -978,6 +1030,7 @@ const TypographyPage = (props) => {
   return (
     <>
       <PageTitle title="บทเรียนออนไลน์" />
+     
       {content}
 
       <Notification notify={notify} setNotify={setNotify} />
