@@ -486,19 +486,19 @@ const TypographyPage = (props) => {
                 setIsLesson12(false);
               }
 
+              // if (res.data.STD2Learning.std_lesson12 === "1") {
+              //   setIsLesson13(true);
+              // } else {
+              //   setIsLesson13(false);
+              // }
+
+              // if (res.data.STD2Learning.std_lesson13 === "1") {
+              //   setIsLesson14(true);
+              // } else {
+              //   setIsLesson14(false);
+              // }
+
               if (res.data.STD2Learning.std_lesson12 === "1") {
-                setIsLesson13(true);
-              } else {
-                setIsLesson13(false);
-              }
-
-              if (res.data.STD2Learning.std_lesson13 === "1") {
-                setIsLesson14(true);
-              } else {
-                setIsLesson14(false);
-              }
-
-              if (res.data.STD2Learning.std_lesson14 === "1") {
                 setIsPostest(true);
               } else {
                 setIsPostest(false);
@@ -924,12 +924,11 @@ const TypographyPage = (props) => {
                         </Avatar>
                       </ListItemAvatar>
                       <ListItemText
-                        primary="การขอใบรับรองและใบรายงานผลการเรียน
-                      (การขอใบรับรองการเป็นนักศึกษา/ ใบรายงานผลการเรียน)"
+                        primary="การขอใบรับรองและใบรายงานผลการเรียน/การย้ายและการลาออก/การเปลี่ยนชื่อ - สกุล"
                         secondary={secondary ? "Secondary text" : null}
                       />
                     </ListItem>
-                    <ListItem
+                    {/* <ListItem
                       button
                       selected={selectedIndex === 14}
                       onClick={(event) => handleListItemClick(event, 14)}
@@ -969,7 +968,7 @@ const TypographyPage = (props) => {
                         primary="การเปลี่ยนชื่อ - สกุล (การเปลี่ยนชื่อ-สกุล ยศ)"
                         secondary={secondary ? "Secondary text" : null}
                       />
-                    </ListItem>
+                    </ListItem> */}
                   </List>
                 </div>
               </Grid>
